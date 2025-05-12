@@ -1,0 +1,21 @@
+@import 'variables.css';
+@import 'navigation.css';
+@import 'photo-showcase.css';
+@import 'about.css';
+@import 'contact.css';
+@import 'utilities.css';
+
+/* All specific styles have been moved to the imported files. */
+/* This file now only serves to import the modular stylesheets. */
+
+/* Contact Page CTA Button */
+.cta-button {
+    display: inline-block; /* Allow padding and margin */
+    padding: 15px 30px; /* Larger padding */
+    font-size: 1.2em; /* Larger font size */
+    text-align: center;
+    margin-top: 20px; /* Add space above the button */
+    width: auto; /* Allow button to size based on content */
+    max-width: 300px; /* Prevent it from becoming too wide on large screens */
+}
+

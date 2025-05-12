@@ -1,0 +1,199 @@
+/* CSS Reset for Mobile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Side Navigation */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-left: 1rem;
+    width: var(--nav-width);
+    height: 100vh;
+    background-color: var(--secondary-color);
+    padding: 2rem 1rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    z-index: 1000;
+}
+
+.logo {
+    padding: 3rem 0;
+    width: 100%;
+    text-align: left;
+}
+
+.logo img {
+    max-width: 160px;
+    height: auto;
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: auto;
+    width: 100%;
+    text-align: left;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-speed);
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+}
+
+.nav-links a::first-letter {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Style for slightly larger first letter */
+.large-first-letter {
+    font-size: 1.4rem; /* Slightly larger size */
+    font-weight: inherit; /* Inherit weight (300 for nav) */
+    margin-right: 0.05em; /* Tiny space after */
+}
+
+/* Desktop/Mobile specific elements */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: inline;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .mobile-only {
+        display: inline;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .side-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0.75rem 0 1rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: var(--secondary-color);
+        z-index: 1000;
+        display: flex !important;
+        transform: none !important;
+        visibility: visible !important;
+        box-sizing: border-box;
+        margin-left: 0;
+        min-width: 100%;
+    }
+
+    .logo {
+        padding: 0.25rem 0 0.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: none;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .logo img {
+        width: 90px;
+        height: auto;
+        margin: 0;
+    }
+
+    .nav-links {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        flex-wrap: nowrap;
+        box-sizing: border-box;
+        list-style: none;
+    }
+
+    .nav-links li {
+        flex: 0 0 auto;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        white-space: nowrap;
+        padding: 0;
+        margin: 0;
+        display: block;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        font-weight: 300;
+        color: var(--text-color);
+    }
+
+    .nav-links a::first-letter {
+        font-size: 0.85rem;
+    }
+
+    /* Hide photo navigation and copyright on mobile */
+    .photo-nav {
+        display: none !important;
+    }
+}
+
+/* Main Content - Mobile Adjustments */
+@media (max-width: 768px) {
+    main {
+        margin: 0;
+        padding-top: 90px; /* Reduced from 240px back to 90px */
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+}
+
+/* Hide the list item for the current page */
+.nav-links li.nav-hidden {
+    display: none;
+} 

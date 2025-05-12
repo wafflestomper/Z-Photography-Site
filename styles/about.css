@@ -1,0 +1,101 @@
+/* About Page Styles */
+.about-showcase {
+    width: 100%;
+    min-height: 100vh; /* Use min-height to allow content to expand */
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    padding: 4rem 50px; /* Add some padding */
+}
+
+.about-inner-content {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center;
+    width: 100%; /* Allow inner content to take full width */
+    max-width: 1100px; /* Limit overall content width */
+}
+
+.about-columns {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start; /* Align items to the top */
+    width: 100%; /* Take full width within inner-content */
+    margin-top: 2rem; /* Add space below hidden H1 */
+}
+
+/* H1 is handled by .visually-hidden in utilities.css */
+
+.about-image {
+    flex: 1; /* Image column takes half the space */
+    max-width: none; /* Remove max-width from container */
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh; /* Keep height constraint */
+    display: block;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.about-text {
+    flex: 1; /* Text column takes half the space */
+    text-align: left; /* Align text left */
+    max-width: none; /* Remove max-width from text block */
+    /* font-family: 'Lato', sans-serif; Removed base font for this block */
+}
+
+.about-text h2 {
+    font-size: 1.2rem; /* Base size like nav link */
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300; /* Base weight like nav link */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4; /* Add slightly more line-height */
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-family: Helvetica, Arial, sans-serif; /* Use Helvetica stack for paragraphs */
+    font-weight: 400; /* Use normal weight for paragraphs */
+}
+
+/* Style for highlighted text within the about section */
+.about-text .highlight-text {
+    color: var(--accent-color); /* Blue */
+    font-style: italic;
+    /* font-weight: 700; Removed Bold */
+}
+
+/* Responsive adjustments for About Page */
+@media (max-width: 900px) {
+    .about-columns {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem; /* Reduced top margin */
+    }
+
+    .about-image {
+        margin-bottom: 2rem;
+        width: 80%;
+        order: 2; /* Move image below text */
+    }
+
+    .about-text {
+        width: 100%;
+        order: 1; /* Move text above image */
+    }
+
+    .about-showcase {
+        padding: 1rem 20px 3rem 20px; /* Removed top padding, kept others */
+    }
+} 

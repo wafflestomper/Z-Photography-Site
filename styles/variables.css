@@ -1,0 +1,34 @@
+/* Import Lato font - RE-ENABLED */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #FFFFFF;
+    --text-color: #333333;
+    --accent-color: #2563EB;
+    --nav-width: 240px;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    display: flex;
+}
+
+/* Apply main content margin globally */
+main {
+    margin-left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    position: relative; /* Needed if children use absolute positioning */
+} 

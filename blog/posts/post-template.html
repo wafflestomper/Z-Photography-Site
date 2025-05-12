@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Z Photography Blog</title>
+    <meta name="description" content="{{excerpt}}">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/blog.css">
+</head>
+<body>
+    <div class="layout-container">
+        <nav class="side-nav" aria-label="Main navigation"></nav>
+        <main class="blog-post">
+            <div class="blog-post-header">
+                <div class="blog-post-nav">
+                    {{#if olderPost}}
+                    <a href="{{olderPost.url}}" class="post-nav-link older">&larr; Older Post<br><span>{{olderPost.title}}</span></a>
+                    {{/if}}
+                    {{#if newerPost}}
+                    <a href="{{newerPost.url}}" class="post-nav-link newer">Newer Post &rarr;<br><span>{{newerPost.title}}</span></a>
+                    {{/if}}
+                </div>
+                <h1 class="blog-post-title">{{title}}</h1>
+                <div class="blog-post-meta">
+                    <span>{{date}}</span>
+                    <span>{{author}}</span>
+                </div>
+            </div>
+            <div class="blog-post-content">
+                {{content}}
+            </div>
+            <hr>
+            <div class="blog-post-list">
+                <h2>All Blog Posts</h2>
+                <ul>
+                    {{#each posts}}
+                    <li><a href="{{url}}">{{title}}</a> <span class="post-date">({{date}})</span></li>
+                    {{/each}}
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="../../js/navigation.js"></script>
+</body>
+</html> 

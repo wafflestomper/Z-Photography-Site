@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z Photography Blog - Sports photography tips, techniques, and insights from Richmond, VA's premier sports photographer.">
+    <meta name="keywords" content="sports photography blog, photography tips, Richmond VA photographer, sports photography techniques">
+    <meta name="author" content="Z Photography">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Z Photography Blog - Sports Photography Tips and Insights">
+    <meta property="og:description" content="Expert sports photography tips, techniques, and insights from Richmond, VA's premier sports photographer.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../images/photo1.jpg">
+    <meta property="og:url" content="https://z-photography.com/blog">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://z-photography.com/blog">
+
+    <title>Blog - Z Photography</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"></noscript>
+</head>
+<body>
+    <div class="layout-container">
+        <nav class="side-nav" aria-label="Main navigation"></nav>
+        <main class="blog-post">
+            <div class="blog-post-header">
+                <div class="blog-post-nav">
+                    {{#if olderPost}}
+                    <a href="{{olderPost.url}}" class="post-nav-link older">&larr; Older Post<br><span>{{olderPost.title}}</span></a>
+                    {{/if}}
+                    {{#if newerPost}}
+                    <a href="{{newerPost.url}}" class="post-nav-link newer">Newer Post &rarr;<br><span>{{newerPost.title}}</span></a>
+                    {{/if}}
+                </div>
+                <h1 class="blog-post-title">{{title}}</h1>
+                <div class="blog-post-meta">
+                    <span>{{date}}</span>
+                    <span>{{author}}</span>
+                </div>
+            </div>
+            <div class="blog-post-content">
+                {{content}}
+            </div>
+            <hr>
+            <div class="blog-post-list">
+                <h2>All Blog Posts</h2>
+                <ul>
+                    {{#each posts}}
+                    <li><a href="{{url}}">{{title}}</a> <span class="post-date">({{date}})</span></li>
+                    {{/each}}
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="../js/navigation.js"></script>
+</body>
+</html> 

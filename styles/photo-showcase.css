@@ -1,0 +1,166 @@
+/* Main Content */
+main {
+    margin-left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    position: relative;
+}
+
+/* Mobile main content */
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 90px; /* Add padding for fixed nav */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .photo-showcase {
+        padding: 8px; /* Reduced padding from 15px to 8px */
+        margin-top: 0;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        display: block !important;
+        position: relative !important;
+    }
+
+    /* Mobile photo display */
+    .mobile-photo {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 0 16px 0 !important; /* Reduced margin from 30px to 16px */
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        left: auto !important;
+        top: auto !important;
+        max-width: 100% !important;
+        object-fit: contain;
+    }
+
+    /* Hide desktop-specific elements */
+    .photo-nav,
+    .photo-dots,
+    .nav-helper-text {
+        display: none !important;
+    }
+}
+
+.photo-showcase img {
+    position: absolute;
+    max-width: calc(100% - 100px);
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+/* Single image (landscape or portrait - default centered) */
+.photo-showcase img.active {
+    opacity: 1;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90vh;
+    max-width: calc(100% - 100px); /* Desktop default */
+}
+
+/* Ensure showcase photos are visible */
+.showcase-photo {
+    display: block;
+}
+
+/* Photo Navigation */
+.photo-nav {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    margin-left: 1rem;
+    width: var(--nav-width);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav-helper-text {
+    font-size: 0.7rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+}
+
+/* Make Pause/Play text blue - REMOVED */
+/*
+.nav-helper-text #pauseText,
+.nav-helper-text #playText {
+    color: var(--accent-color);
+}
+*/
+
+.current-number {
+    display: none;
+}
+
+.photo-dots {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    margin: 0 auto;
+}
+
+.dot:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dot.active {
+    background-color: var(--text-color);
+    transform: scale(1.2);
+}
+
+.copyright-text {
+    font-size: 0.7rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    text-align: center;
+    margin-top: 1rem; /* Space above copyright text */
+    font-family: 'Lato', sans-serif;
+    line-height: 1.2;
+}
+
+/* Photo Showcase */
+.photo-showcase {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 50px;
+} 
