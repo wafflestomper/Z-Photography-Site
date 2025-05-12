@@ -10,12 +10,11 @@ function generateNavHTML() {
             </a>
         </div>
         <ul class="nav-links">
-            <li data-page="index.html"><a href="index.html">Home</a></li>
-            <li data-page="about.html"><a href="about.html">About</a></li>
-            <li data-page="blog/index.html"><a href="blog/index.html">Blog</a></li>
+            <li data-page="about.html"><a href="/about.html">About</a></li>
+            <li data-page="blog/index.html"><a href="/blog/index.html">Blog</a></li>
             <li data-page="galleries"><a href="https://zollinhofer.com" target="_blank" rel="noopener noreferrer">Galleries</a></li>
             <li data-page="contact.html">
-                <a href="contact.html">
+                <a href="/contact.html">
                     <span class="desktop-only"><span class="large-first-letter">C</span>ontact</span>
                     <span class="mobile-only">Contact</span>
                 </a>
@@ -79,17 +78,22 @@ function renderNavigation() {
     navContainer.innerHTML = generateNavHTML();
 
     // Determine current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html'; // Get filename or default to index
-    const isRootIndex = window.location.pathname === '/' || window.location.pathname === '/index.html';
-
-    // Hide the link corresponding to the current page
+    const currentPath = window.location.pathname;
     const navLinks = navContainer.querySelectorAll('.nav-links li');
     navLinks.forEach(li => {
-        if (li.dataset.page === currentPage) {
+        const page = li.dataset.page;
+        // Hide About link on /about.html
+        if (page === 'about.html' && currentPath === '/about.html') {
             li.classList.add('nav-hidden');
-        } else if (currentPage === 'index.html' && li.dataset.page === 'index.html') {
-             li.classList.add('nav-hidden'); // Explicitly hide Home on index
-        } 
+        }
+        // Hide Blog link on /blog/index.html or /blog/
+        else if (page === 'blog/index.html' && (currentPath === '/blog/index.html' || currentPath === '/blog/')) {
+            li.classList.add('nav-hidden');
+        }
+        // Hide Contact link on /contact.html
+        else if (page === 'contact.html' && currentPath === '/contact.html') {
+            li.classList.add('nav-hidden');
+        }
     });
 
     // Hide photo nav elements on non-root-index pages
