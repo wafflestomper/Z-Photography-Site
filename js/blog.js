@@ -1,3 +1,7 @@
+import { highlightMatches, formatDate, debounce, getElement, getElements } from './utils.js';
+import { onDOMReady } from './dom-ready.js';
+import { Lightbox } from './lightbox.js';
+
 // Function to parse front matter from markdown content
 function parseFrontMatter(content) {
     const frontMatterRegex = /^---\n([\s\S]*?)\n---/;
@@ -46,13 +50,15 @@ function createBlogCard(post) {
     const card = document.createElement('article');
     card.className = 'blog-card';
     
+    const date = formatDate(post.metadata.date);
+    
     card.innerHTML = `
         <img src="${post.metadata.featuredImage}" alt="${post.metadata.title}" class="blog-card-image">
         <div class="blog-card-content">
             <h2 class="blog-card-title">${post.metadata.title}</h2>
             <p class="blog-card-excerpt">${post.metadata.excerpt}</p>
             <div class="blog-card-meta">
-                <span>${new Date(post.metadata.date).toLocaleDateString()}</span>
+                <span>${date}</span>
                 <span>${post.metadata.author}</span>
             </div>
             <div class="blog-card-tags">
@@ -117,13 +123,6 @@ function setupCategoryFiltering() {
     });
 }
 
-// Function to highlight search matches in text
-function highlightMatches(text, searchTerm) {
-    if (!searchTerm) return text;
-    const regex = new RegExp(`(${searchTerm})`, 'gi');
-    return text.replace(regex, '<span class="highlight">$1</span>');
-}
-
 // Function to search through blog posts
 function searchBlogPosts(searchTerm) {
     const cards = document.querySelectorAll('.blog-card');
@@ -167,30 +166,15 @@ function searchBlogPosts(searchTerm) {
 
 // Function to setup search functionality
 function setupSearch() {
-    const searchInput = document.getElementById('blogSearch');
+    const searchInput = getElement('blog-search');
     if (!searchInput) return;
-    
-    let searchTimeout;
-    
+
+    const debouncedSearch = debounce((searchTerm) => {
+        searchBlogPosts(searchTerm);
+    }, 300);
+
     searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            searchBlogPosts(e.target.value);
-        }, 300); // Debounce search for better performance
-    });
-    
-    // Clear highlights when search is cleared
-    searchInput.addEventListener('change', (e) => {
-        if (!e.target.value) {
-            const cards = document.querySelectorAll('.blog-card');
-            cards.forEach(card => {
-                const titleEl = card.querySelector('.blog-card-title');
-                const excerptEl = card.querySelector('.blog-card-excerpt');
-                
-                titleEl.innerHTML = titleEl.textContent;
-                excerptEl.innerHTML = excerptEl.textContent;
-            });
-        }
+        debouncedSearch(e.target.value);
     });
 }
 
@@ -245,8 +229,9 @@ function setupSearch() {
 })();
 
 // Initialize blog functionality
-document.addEventListener('DOMContentLoaded', () => {
+onDOMReady(() => {
     loadBlogPosts();
     setupCategoryFiltering();
     setupSearch();
+    new Lightbox();
 }); 

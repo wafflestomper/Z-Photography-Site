@@ -1,5 +1,8 @@
 // js/navigation.js
 
+import { getElement } from './utils.js';
+import { onDOMReady } from './dom-ready.js';
+
 function generateNavHTML() {
     // Define the common inner HTML structure for the side navigation
     // Includes all links and the container for photo nav elements
@@ -68,51 +71,14 @@ function setPhoneNumber() {
 }
 
 function renderNavigation() {
-    const navContainer = document.querySelector('nav.side-nav'); // Target the existing <nav>
-    if (!navContainer) {
-        console.error("Navigation container (<nav class='side-nav'>) not found!");
-        return;
-    }
+    const navContainer = getElement('main-nav');
+    if (!navContainer) return;
 
-    // Inject the common HTML
     navContainer.innerHTML = generateNavHTML();
-
-    // Determine current page
-    const currentPath = window.location.pathname;
-    const navLinks = navContainer.querySelectorAll('.nav-links li');
-    navLinks.forEach(li => {
-        const page = li.dataset.page;
-        // Hide About link on /about.html
-        if (page === 'about.html' && currentPath === '/about.html') {
-            li.classList.add('nav-hidden');
-        }
-        // Hide Blog link on /blog/index.html or /blog/
-        else if (page === 'blog/index.html' && (currentPath === '/blog/index.html' || currentPath === '/blog/')) {
-            li.classList.add('nav-hidden');
-        }
-        // Hide Contact link on /contact.html
-        else if (page === 'contact.html' && currentPath === '/contact.html') {
-            li.classList.add('nav-hidden');
-        }
-    });
-
-    // Hide photo nav elements on non-root-index pages
-    const photoNav = navContainer.querySelector('.photo-nav');
-    if (photoNav && currentPath !== '/index.html') {
-        // Hide nav-helper-text only (arrow/spacebar info)
-        const navHelperText = photoNav.querySelector('.nav-helper-text');
-        if (navHelperText) navHelperText.style.display = 'none';
-    }
-
-    // Set copyright text
     setCopyrightText();
-
-    // Set email address (will only work if placeholder exists)
     setEmailAddress();
-
-    // Set phone number (will only work if placeholder exists)
     setPhoneNumber();
 }
 
-// Run the function when the DOM is ready
-document.addEventListener('DOMContentLoaded', renderNavigation); 
+// Initialize navigation
+onDOMReady(renderNavigation); 
