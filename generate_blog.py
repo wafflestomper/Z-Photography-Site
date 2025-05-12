@@ -4,6 +4,7 @@ import glob
 import shutil
 from datetime import datetime
 import markdown
+import yaml
 
 # Paths
 POSTS_DIR = 'blog/posts'
@@ -21,15 +22,31 @@ def parse_markdown(md_path):
     if not match:
         raise ValueError(f"No front matter found in {md_path}")
     front_matter, body = match.groups()
-    meta = {}
-    for line in front_matter.split('\n'):
-        if ':' in line:
-            key, value = line.split(':', 1)
-            value = value.strip().strip('"')
-            if value.startswith('[') and value.endswith(']'):
-                # Parse list
-                value = [v.strip().strip('"') for v in value[1:-1].split(',') if v.strip()]
-            meta[key.strip()] = value
+    meta = yaml.safe_load(front_matter)
+    # Handle inline image placeholders before markdown conversion
+    images = meta.get('images', [])
+    def get_image(idx):
+        if not images or idx < 0 or idx >= len(images):
+            return None
+        img = images[idx]
+        if isinstance(img, dict):
+            src = img.get('src', '')
+            alt = img.get('alt', f"Image {idx+1} for {meta['title']}")
+        else:
+            src = img
+            alt = f"Image {idx+1} for {meta['title']}"
+        return src, alt
+    def replace_inline_image(match):
+        idx = int(match.group(1)) - 1
+        align = match.group(2) or 'right'
+        align = align.lower()
+        img = get_image(idx)
+        if not img:
+            return ''
+        src, alt = img
+        return f'<img src="{src}" alt="{alt}" class="inline-image {align}" />'
+    # Replace [INLINE_IMAGE1 align=right] or [INLINE_IMAGE1]
+    body = re.sub(r'\[INLINE_IMAGE(\d+)(?: align=(left|right))?\]', replace_inline_image, body)
     return meta, body
 
 def render_template(template, context):
@@ -81,7 +98,12 @@ def main():
         slug = os.path.splitext(os.path.basename(md_path))[0]
         meta['slug'] = slug
         meta['url'] = f'{slug}.html'
-        meta['date_obj'] = datetime.strptime(meta['date'], '%Y-%m-%d')
+        # Handle date parsing for both string and datetime.date
+        if isinstance(meta['date'], str):
+            meta['date_obj'] = datetime.strptime(meta['date'], '%Y-%m-%d')
+        else:
+            meta['date_obj'] = datetime.combine(meta['date'], datetime.min.time())
+        # Remove duplicate inline image replacement logic
         meta['content'] = markdown.markdown(body)
         posts.append(meta)
     # Sort posts by date descending
