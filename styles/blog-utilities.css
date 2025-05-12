@@ -1,0 +1,62 @@
+/* Search Styles */
+.blog-search {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.blog-search input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.blog-search input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-color-light);
+}
+
+.search-results-count {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-color-light);
+}
+
+/* Highlight search matches */
+.highlight {
+    background-color: var(--accent-color-light);
+    padding: 0.1em 0.2em;
+    border-radius: 2px;
+}
+
+/* Inline Image Styles */
+.inline-image {
+    max-width: 40%;
+    height: auto;
+    margin: 0 0 1em 1em;
+    display: block;
+}
+
+.inline-image.left {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+.inline-image.right {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+@media (max-width: 768px) {
+    .inline-image,
+    .inline-image.left,
+    .inline-image.right {
+        float: none;
+        display: block;
+        margin: 1em auto;
+        max-width: 100%;
+    }
+} 

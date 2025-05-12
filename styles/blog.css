@@ -1,3 +1,10 @@
+/* Import modular blog styles */
+@import 'blog-card.css';
+@import 'blog-post.css';
+@import 'lightbox.css';
+@import 'blog-utilities.css';
+
+/* Layout styles */
 .layout-container {
     display: flex;
     align-items: flex-start;

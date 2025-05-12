@@ -1,0 +1,122 @@
+/* Blog Post Page Styles */
+.blog-post-header {
+    margin-bottom: 2rem;
+}
+
+.blog-post-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.blog-post-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-color-light);
+    margin-bottom: 2rem;
+}
+
+.blog-post-content {
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.blog-post-content h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+}
+
+.blog-post-content h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.blog-post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-post-content ul, 
+.blog-post-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.blog-post-content li {
+    margin-bottom: 0.5rem;
+}
+
+.blog-post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.blog-post-featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+/* Blog Post Navigation */
+.blog-post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    transition: color var(--transition-speed);
+    max-width: 45%;
+    display: block;
+}
+
+.post-nav-link span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-top: 0.25rem;
+}
+
+.post-nav-link:hover {
+    color: var(--accent-color);
+}
+
+.post-nav-link:hover span {
+    color: var(--accent-color-light);
+}
+
+.post-nav-link.older {
+    text-align: right;
+    margin-left: auto;
+}
+
+.post-nav-link.newer {
+    text-align: left;
+    margin-right: auto;
+}
+
+/* Responsive adjustments for navigation */
+@media (max-width: 768px) {
+    .blog-post-navigation {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .post-nav-link {
+        max-width: 100%;
+    }
+
+    .post-nav-link.older,
+    .post-nav-link.newer {
+        text-align: left;
+    }
+} 
