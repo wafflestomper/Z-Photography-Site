@@ -1,5 +1,6 @@
-/* Import Lato font - RE-ENABLED */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Literata:wght@300;400&display=swap');
 
 :root {
     --primary-color: #FFFFFF;
@@ -8,6 +9,8 @@
     --accent-color: #2563EB;
     --nav-width: 240px;
     --transition-speed: 0.3s;
+    --font-body: 'Nunito Sans', sans-serif;
+    --font-heading: 'Literata', serif;
 }
 
 * {
@@ -17,11 +20,20 @@
 }
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--primary-color);
     display: flex;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+}
+
+h1 {
+    font-weight: 400;
 }
 
 /* Apply main content margin globally */

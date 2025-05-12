@@ -1,26 +1,33 @@
 // js/navigation.js
 
 function generateNavHTML() {
+    // Get the current page path
+    const currentPath = window.location.pathname;
+    const isRootIndexPage = currentPath === '/' || currentPath === '/index.html';
+
     // Define the common inner HTML structure for the side navigation
-    // Includes all links and the container for photo nav elements
-    return `
+    let navHTML = `
         <div class="logo">
-            <a href="index.html" aria-label="Z Photography Home">
-                <img src="images/logo.png" alt="Z Photography - Richmond VA Sports Photographer" width="160" height="auto">
+            <a href="/index.html" aria-label="Z Photography Home">
+                <img src="/images/logo.png" alt="Z Photography - Richmond VA Sports Photographer" width="160" height="auto">
             </a>
         </div>
         <ul class="nav-links">
-            <li data-page="index.html"><a href="index.html">Home</a></li>
-            <li data-page="about.html"><a href="about.html">About</a></li>
-            <li data-page="blog/index.html"><a href="blog/index.html">Blog</a></li>
-            <li data-page="galleries"><a href="https://zollinhofer.com" target="_blank" rel="noopener noreferrer">Galleries</a></li>
+            <li data-page="index.html"><a href="index.html">home</a></li>
+            <li data-page="about.html"><a href="about.html">about</a></li>
+            <li data-page="blog/index.html"><a href="blog/index.html">blog</a></li>
+            <li data-page="galleries"><a href="https://zollinhofer.com" target="_blank" rel="noopener noreferrer">galleries</a></li>
             <li data-page="contact.html">
                 <a href="contact.html">
-                    <span class="desktop-only"><span class="large-first-letter">C</span>ontact or <span class="large-first-letter">B</span>ook a <span class="large-first-letter">S</span>ession</span>
-                    <span class="mobile-only">Book Session</span>
+                    <span class="desktop-only">contact</span>
+                    <span class="mobile-only">contact</span>
                 </a>
             </li>
-        </ul>
+        </ul>`;
+
+    // Only add photo navigation on root index page
+    if (isRootIndexPage) {
+        navHTML += `
         <div class="photo-nav" role="navigation" aria-label="Photo gallery navigation">
              <div class="nav-helper-text">
                  ← → Arrow keys: Previous/Next<br>
@@ -29,8 +36,10 @@ function generateNavHTML() {
              <div class="current-number" id="currentPhotoNumber">1</div>
              <div class="photo-dots" id="photoDots"></div>
              <p class="copyright-text" id="copyright"></p>
-         </div>
-    `;
+         </div>`;
+    }
+
+    return navHTML;
 }
 
 function setCopyrightText() {
@@ -79,7 +88,8 @@ function renderNavigation() {
     navContainer.innerHTML = generateNavHTML();
 
     // Determine current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html'; // Get filename or default to index
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
 
     // Hide the link corresponding to the current page
     const navLinks = navContainer.querySelectorAll('.nav-links li');
@@ -90,12 +100,6 @@ function renderNavigation() {
              li.classList.add('nav-hidden'); // Explicitly hide Home on index
         } 
     });
-
-    // Hide photo nav elements on non-index pages
-    const photoNav = navContainer.querySelector('.photo-nav');
-    if (photoNav && currentPage !== 'index.html') {
-        photoNav.style.display = 'none'; // Hide completely if not index
-    }
 
     // Set copyright text
     setCopyrightText();
