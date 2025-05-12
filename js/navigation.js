@@ -98,8 +98,10 @@ function renderNavigation() {
 
     // Hide photo nav elements on non-root-index pages
     const photoNav = navContainer.querySelector('.photo-nav');
-    if (photoNav && !isRootIndex) {
-        photoNav.style.display = 'none'; // Hide completely if not root index
+    if (photoNav && currentPath !== '/index.html') {
+        // Hide nav-helper-text only (arrow/spacebar info)
+        const navHelperText = photoNav.querySelector('.nav-helper-text');
+        if (navHelperText) navHelperText.style.display = 'none';
     }
 
     // Set copyright text
