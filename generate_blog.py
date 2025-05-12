@@ -33,11 +33,30 @@ def parse_markdown(md_path):
     return meta, body
 
 def render_template(template, context):
-    # Simple {{var}} replacement and {{#each posts}}...{{/each}}
-    def replace_var(m):
-        key = m.group(1)
-        return str(context.get(key, ''))
-    html = re.sub(r'{{(\w+)}}', replace_var, template)
+    # Step 1: Remove all #if blocks for variables not present in context
+    def remove_if_block(m):
+        var = m.group(1)
+        if not context.get(var):
+            return ''
+        return m.group(0)  # Keep for next pass
+    html = re.sub(r'[ \t]*{{#if (\w+)}}([\s\S]*?)[ \t]*{{/if}}[ \t]*\n?', remove_if_block, template)
+    # Step 2: For remaining #if blocks, replace variables inside
+    def process_if_block(m):
+        var = m.group(1)
+        block = m.group(2)
+        # Replace nested variables (e.g., olderPost.url) and top-level variables (e.g., featuredImage)
+        def replace_var(mm):
+            key = mm.group(1)
+            prefix = f'{var}.'
+            if key.startswith(prefix):
+                subkey = key[len(prefix):]
+                return str(context[var].get(subkey, ''))
+            # Top-level context variable
+            return str(context.get(key, ''))
+        replaced = re.sub(r'{{(\w+(?:\.\w+)?)}}', replace_var, block)
+        print(f'process_if_block called for var={var}, replaced block=\n{replaced}')
+        return replaced
+    html = re.sub(r'[ \t]*{{#if (\w+)}}([\s\S]*?)[ \t]*{{/if}}[ \t]*\n?', process_if_block, html)
     # Handle #each posts
     def each_posts(m):
         item_tpl = m.group(1)
@@ -46,14 +65,11 @@ def render_template(template, context):
             out += re.sub(r'{{(\w+)}}', lambda mm: str(post.get(mm.group(1), '')), item_tpl)
         return out
     html = re.sub(r'{{#each posts}}([\s\S]+?){{/each}}', each_posts, html)
-    # Handle #if olderPost/newerPost
-    def if_block(m):
-        var = m.group(1)
-        block = m.group(2)
-        if context.get(var):
-            return re.sub(r'{{(\w+)}}', lambda mm: str(context[var].get(mm.group(1), '')), block)
-        return ''
-    html = re.sub(r'{{#if (\w+)}}([\s\S]+?){{/if}}', if_block, html)
+    # Simple {{var}} replacement
+    def replace_var(m):
+        key = m.group(1)
+        return str(context.get(key, ''))
+    html = re.sub(r'{{(\w+)}}', replace_var, html)
     return html
 
 def main():
@@ -75,18 +91,24 @@ def main():
         template = f.read()
     # Generate each post
     for i, post in enumerate(posts):
+        # Remove the first <h1>...</h1> from the post content to avoid duplicate titles
+        content_no_title = re.sub(r'<h1[^>]*?>.*?</h1>\s*', '', post['content'], count=1, flags=re.DOTALL|re.IGNORECASE)
         ctx = {
             'title': post['title'],
             'date': post['date'],
+            'dateFormatted': post['date_obj'].strftime('%B %d, %Y'),
             'author': post.get('author', ''),
             'excerpt': post.get('excerpt', ''),
-            'content': post['content'],
+            'featuredImage': post.get('featuredImage', ''),
+            'imageAlt': post.get('imageAlt', post['title']),
+            'content': content_no_title,
             'posts': [
                 {'title': p['title'], 'date': p['date'], 'url': p['url']} for p in posts
             ],
             'olderPost': posts[i+1] if i+1 < len(posts) else None,
             'newerPost': posts[i-1] if i-1 >= 0 else None,
         }
+        print('Post context:', ctx)  # Debug print
         html = render_template(template, ctx)
         out_path = os.path.join(OUTPUT_DIR, f"{post['slug']}.html")
         with open(out_path, 'w', encoding='utf-8') as f:
@@ -95,18 +117,27 @@ def main():
     # Generate index.html with most recent post
     if posts:
         most_recent = posts[0]
+        # Remove the first <h1>...</h1> from the most recent post's content for the index page
+        content_no_title = re.sub(r'<h1[^>]*?>.*?</h1>\s*', '', most_recent['content'], count=1, flags=re.DOTALL|re.IGNORECASE)
         ctx = {
             'title': most_recent['title'],
             'date': most_recent['date'],
+            'dateFormatted': most_recent['date_obj'].strftime('%B %d, %Y'),
             'author': most_recent.get('author', ''),
             'excerpt': most_recent.get('excerpt', ''),
-            'content': most_recent['content'],
+            'featuredImage': most_recent.get('featuredImage', ''),
+            'imageAlt': most_recent.get('imageAlt', most_recent['title']),
+            'content': content_no_title,
             'posts': [
-                {'title': p['title'], 'date': p['date'], 'url': f'posts/{p["slug"]}.html'} for p in posts
+                {'title': p['title'], 'date': p['date'], 'url': p['url']} for p in posts
             ],
-            'olderPost': posts[1] if len(posts) > 1 else None,
-            'newerPost': None,
+            'olderPost': {
+                'title': posts[1]['title'],
+                'url': f'posts/{posts[1]["slug"]}.html'
+            } if len(posts) > 1 else None,
+            # Do not set newerPost for index
         }
+        print('Index context:', ctx)  # Debug print
         with open(INDEX_PATH, 'w', encoding='utf-8') as f:
             f.write(render_template(template, ctx))
         print(f"Generated {INDEX_PATH}")

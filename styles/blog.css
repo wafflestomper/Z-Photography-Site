@@ -7,14 +7,15 @@
 .side-nav {
     width: 200px;
     flex-shrink: 0;
-    border-right: 1px solid #eee;
-    background: #fafbfc;
+    border-right: none;
+    background: transparent;
 }
 
-.blog-main {
+.blog-post, .blog-main {
     flex: 1;
     padding: 2rem 3vw;
-    max-width: 900px;
+    max-width: 800px;
+    min-width: 0;
 }
 
 .blog-main h1 {
@@ -115,12 +116,6 @@
 }
 
 /* Blog Post Page Styles */
-.blog-post {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
 .blog-post-header {
     margin-bottom: 2rem;
 }
@@ -172,6 +167,75 @@
     height: auto;
     border-radius: 8px;
     margin: 2rem 0;
+}
+
+.blog-post-featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+/* Blog Post Navigation */
+.blog-post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    transition: color var(--transition-speed);
+    max-width: 45%;
+    display: block;
+}
+
+.post-nav-link span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin-top: 0.25rem;
+}
+
+.post-nav-link:hover {
+    color: var(--accent-color);
+}
+
+.post-nav-link:hover span {
+    color: var(--accent-color-light);
+}
+
+.post-nav-link.older {
+    text-align: right;
+    margin-left: auto;
+}
+
+.post-nav-link.newer {
+    text-align: left;
+    margin-right: auto;
+}
+
+/* Responsive adjustments for navigation */
+@media (max-width: 768px) {
+    .blog-post-navigation {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .post-nav-link {
+        max-width: 100%;
+    }
+
+    .post-nav-link.older,
+    .post-nav-link.newer {
+        text-align: left;
+    }
 }
 
 /* Responsive Design */

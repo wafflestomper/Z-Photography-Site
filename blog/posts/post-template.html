@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}} - Z Photography Blog</title>
     <meta name="description" content="{{excerpt}}">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <link rel="stylesheet" href="../../styles/blog.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/blog.css">
 </head>
 <body>
     <div class="layout-container">
         <nav class="side-nav" aria-label="Main navigation"></nav>
         <main class="blog-post">
             <div class="blog-post-header">
-                <div class="blog-post-nav">
-                    {{#if olderPost}}
-                    <a href="{{olderPost.url}}" class="post-nav-link older">&larr; Older Post<br><span>{{olderPost.title}}</span></a>
-                    {{/if}}
-                    {{#if newerPost}}
-                    <a href="{{newerPost.url}}" class="post-nav-link newer">Newer Post &rarr;<br><span>{{newerPost.title}}</span></a>
-                    {{/if}}
-                </div>
                 <h1 class="blog-post-title">{{title}}</h1>
+                {{#if featuredImage}}
+                <img class="blog-post-featured-image" src="{{featuredImage}}" alt="{{imageAlt}}">
+                {{/if}}
                 <div class="blog-post-meta">
-                    <span>{{date}}</span>
-                    <span>{{author}}</span>
+                    <span>{{author}} &ndash; {{dateFormatted}}</span>
                 </div>
             </div>
             <div class="blog-post-content">
                 {{content}}
+            </div>
+            <div class="blog-post-navigation">
+                {{#if newerPost}}
+                <a href="{{newerPost.url}}" class="post-nav-link newer">&larr; Newer Post<br><span>{{newerPost.title}}</span></a>
+                {{/if}}
+                {{#if olderPost}}
+                <a href="{{olderPost.url}}" class="post-nav-link older">Older Post &rarr;<br><span>{{olderPost.title}}</span></a>
+                {{/if}}
             </div>
             <hr>
             <div class="blog-post-list">
