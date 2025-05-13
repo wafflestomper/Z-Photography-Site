@@ -4,6 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "node scripts/build-instagram.js",
+    "update-instagram": "node scripts/update-instagram.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
