@@ -1,0 +1,46 @@
+{
+    "upcomingShoots": [
+        {
+            "date": "2024-04-15",
+            "eventName": "Richmond High School Track Meet",
+            "location": "Richmond High School Stadium",
+            "description": "Spring track and field championship meet",
+            "image": "/images/upcoming/track-meet.jpg",
+            "type": "sports",
+            "details": {
+                "startTime": "9:00 AM",
+                "endTime": "3:00 PM",
+                "teams": ["Richmond High", "Central High", "West High"],
+                "events": ["Track", "Field", "Relays"]
+            }
+        },
+        {
+            "date": "2024-04-20",
+            "eventName": "State Basketball Championship",
+            "location": "Richmond Coliseum",
+            "description": "Final state championship game",
+            "image": "/images/upcoming/basketball.jpg",
+            "type": "sports",
+            "details": {
+                "startTime": "7:00 PM",
+                "endTime": "9:30 PM",
+                "teams": ["Richmond High", "State Champions"],
+                "events": ["Championship Game"]
+            }
+        },
+        {
+            "date": "2024-04-25",
+            "eventName": "Senior Portrait Session",
+            "location": "Richmond Park",
+            "description": "Outdoor senior portraits for graduating class",
+            "image": "/images/upcoming/portraits.jpg",
+            "type": "portrait",
+            "details": {
+                "startTime": "2:00 PM",
+                "endTime": "5:00 PM",
+                "sessionType": "Outdoor",
+                "numberOfSubjects": "15"
+            }
+        }
+    ]
+} 
