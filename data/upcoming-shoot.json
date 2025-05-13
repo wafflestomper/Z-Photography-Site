@@ -1,17 +1,15 @@
 {
     "upcomingShoots": [
         {
-            "date": "2024-04-15",
-            "eventName": "Richmond High School Track Meet",
-            "location": "Richmond High School Stadium",
-            "description": "Spring track and field championship meet",
-            "image": "/images/upcoming/track-meet.jpg",
-            "type": "sports",
+            "date": "2025-05-17",
+            "eventName": "Burnette Family Portrait",
+            "location": "St. Catherine's School",
+            "description": "Family Portrait",
+            "type": "portrait",
             "details": {
-                "startTime": "9:00 AM",
-                "endTime": "3:00 PM",
-                "teams": ["Richmond High", "Central High", "West High"],
-                "events": ["Track", "Field", "Relays"]
+                "startTime": "9:30 AM",
+                "endTime": "10:30 AM",
+                "events": ["Family", "Portrait"]
             }
         },
         {
