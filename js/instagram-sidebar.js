@@ -1,5 +1,7 @@
 // Load environment variables
-const MEDIA_COUNT = 5;
+import { Lightbox } from '/js/lightbox.js';
+
+const MEDIA_COUNT = 10;
 
 async function loadInstagramData() {
     try {
@@ -20,7 +22,7 @@ function renderInstagramGrid(media) {
     if (!container) return;
     let html = '<h3 class="ig-sidebar-heading" style="text-align:center;">Latest on Instagram</h3><div class="ig-grid">';
     media.slice(0, MEDIA_COUNT).forEach(item => {
-        html += `<a href="${item.permalink}" target="_blank" rel="noopener" class="ig-grid-item">
+        html += `<a href="${item.media_url}" class="ig-grid-item enlarge-image" target="_blank" rel="noopener">
             <img src="${item.media_url}" alt="${item.caption || 'Instagram photo'}" loading="lazy" />
         </a>`;
     });
@@ -30,12 +32,11 @@ function renderInstagramGrid(media) {
 
 // Initialize Instagram feed
 function initInstagramFeed() {
-    // Only run on blog pages
-    if (window.location.pathname.startsWith('/blog/')) {
+    const container = document.getElementById('instagram-sidebar-gallery');
+    if (container) {
         loadInstagramData()
             .then(renderInstagramGrid)
             .catch(err => {
-                const container = document.getElementById('instagram-sidebar-gallery');
                 if (container) container.innerHTML = '<p>Could not load Instagram feed.</p>';
             });
     }
@@ -60,11 +61,11 @@ function addStyles() {
       gap: 8px;
     }
     .ig-grid-item img {
-      width: 100%;
-      max-width: 320px;
+      width: 250px;
       height: auto;
-      aspect-ratio: 1/1;
-      object-fit: cover;
+      max-width: 100%;
+      aspect-ratio: auto;
+      object-fit: contain;
       border-radius: 4px;
       display: block;
       margin: 0 auto;
@@ -78,8 +79,10 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         addStyles();
         initInstagramFeed();
+        window.lightbox = new Lightbox();
     });
 } else {
     addStyles();
     initInstagramFeed();
+    window.lightbox = new Lightbox();
 } 

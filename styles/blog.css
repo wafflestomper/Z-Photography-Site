@@ -37,14 +37,14 @@
     margin-top: 0;
 }
 .ig-grid {
-    gap: 4px;
+    gap: 8px;
 }
 .ig-grid-item img {
-    width: 90px;
-    height: 90px;
+    width: 250px;
+    height: auto;
     max-width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+    aspect-ratio: auto;
+    object-fit: contain;
     border-radius: 4px;
     display: block;
 }

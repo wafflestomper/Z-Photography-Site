@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 const IG_USER_ID = '17841401845000174';
-const MEDIA_COUNT = 5;
+const MEDIA_COUNT = 10;
 
 async function fetchInstagramMedia() {
     // Try both token names

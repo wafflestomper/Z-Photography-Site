@@ -178,60 +178,15 @@ function setupSearch() {
     });
 }
 
-// Lightbox modal for .enlarge-image
-(function() {
-    function createLightbox() {
-        if (document.getElementById('lightbox-modal')) return; // Only one modal
-        const modal = document.createElement('div');
-        modal.id = 'lightbox-modal';
-        modal.style.display = 'none';
-        modal.innerHTML = `
-            <div class="lightbox-backdrop"></div>
-            <button class="lightbox-close" aria-label="Close image">&times;</button>
-            <img class="lightbox-img" src="" alt="Enlarged image">
-        `;
-        document.body.appendChild(modal);
-        // Close on click outside image, on close button, or Escape
-        modal.querySelector('.lightbox-backdrop').onclick = closeLightbox;
-        modal.querySelector('.lightbox-close').onclick = closeLightbox;
-        modal.addEventListener('click', function(e) {
-            // Only close if clicking backdrop or modal itself (not image or close button)
-            if (e.target === modal) closeLightbox();
-        });
-        document.addEventListener('keydown', function(e) {
-            // Fix: close if modal is visible and Escape is pressed
-            if (modal.style.display !== 'none' && e.key === 'Escape') closeLightbox();
-        });
-    }
-    function openLightbox(src, alt) {
-        const modal = document.getElementById('lightbox-modal');
-        if (!modal) return;
-        const img = modal.querySelector('.lightbox-img');
-        img.src = src;
-        img.alt = alt || '';
-        modal.style.display = 'flex';
-    }
-    function closeLightbox() {
-        const modal = document.getElementById('lightbox-modal');
-        if (modal) modal.style.display = 'none';
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        createLightbox();
-        document.body.addEventListener('click', function(e) {
-            const a = e.target.closest('a.enlarge-image');
-            if (a) {
-                e.preventDefault();
-                const img = a.querySelector('img');
-                openLightbox(a.href, img ? img.alt : '');
-            }
-        });
-    });
-})();
-
 // Initialize blog functionality
 onDOMReady(() => {
-    loadBlogPosts();
-    setupCategoryFiltering();
-    setupSearch();
-    new Lightbox();
+    // Initialize lightbox
+    window.lightbox = new Lightbox();
+    
+    // Then initialize other blog features
+    if (window.location.pathname.startsWith('/blog/')) {
+        loadBlogPosts();
+        setupCategoryFiltering();
+        setupSearch();
+    }
 }); 
