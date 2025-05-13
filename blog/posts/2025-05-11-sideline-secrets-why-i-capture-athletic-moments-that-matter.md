@@ -7,11 +7,18 @@ tags: ["sports photography", "athletic memories", "camera settings", "compositio
 featuredImage: "/images/blog/game-winning-goal-lacrosse.jpg"
 imageAlt: "Saints lacrosse player scoring a goal against Hoyas, with teammates and goalie in the background."
 excerpt: "A teacher-photographer's personal journey into sports photography, sharing technical tips and why preserving athletic moments matters so deeply."
+images:
+  - src: /images/blog/game-winning-goal-lacrosse.jpg
+    alt: Saints lacrosse player scoring a goal against Hoyas, with teammates and goalie in the background.
+  - src: /images/blog/celebration-photo.jpg
+    alt: Players celebrating after a big win.
 ---
 
 # Sideline Secrets: Why I Capture Athletic Moments That Matter
 
 After 20 years behind the lens, sports photography has become my true passion over the past five years. As a teacher, I witness a completely different side of my students when I see them competing on fields and courts compared to our classroom interactions. There's something magical about helping young athletes find success in competition—it's both rewarding and tremendously fun.
+
+[INLINE_IMAGE1 align=right width=50%]
 
 Since I can't coach every student (not everyone chooses soccer or tennis), photography offers me another avenue to connect with them beyond academics. I get to witness and preserve their athletic journeys through my camera.
 
@@ -22,6 +29,8 @@ My passion stems from personal experience. I remember playing for Charlottesvill
 But I have no photographs to relive those moments. You can look up my college stats sheet, but there are no images of me in action. This absence is something I deeply regret, and it fuels my passion for sports photography today. I want my students to have what I don't—the ability to look back and see the amazing moments from their middle and high school athletic careers.
 
 ## The Secret to Great Sports Photos
+
+[INLINE_IMAGE2 align=left width=50%]
 
 People often ask how I capture such compelling images. While quality equipment helps, the more important factor is knowing where to be and when to be there. My athletic background gives me an intimate understanding of multiple sports, helping me anticipate action, position myself effectively, and capture the decisive moment.
 

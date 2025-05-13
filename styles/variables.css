@@ -39,7 +39,7 @@ h1 {
 /* Apply main content margin globally */
 main {
     margin-left: var(--nav-width);
-    width: calc(100% - var(--nav-width));
+    width: 100%;
     min-height: 100vh;
     background-color: var(--primary-color);
     position: relative; /* Needed if children use absolute positioning */
