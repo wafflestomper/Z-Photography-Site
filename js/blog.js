@@ -1,6 +1,6 @@
-import { highlightMatches, formatDate, debounce, getElement, getElements } from './utils.js';
-import { onDOMReady } from './dom-ready.js';
-import { Lightbox } from './lightbox.js';
+import { highlightMatches, formatDate, debounce, getElement, getElements } from '/js/utils.js';
+import { onDOMReady } from '/js/dom-ready.js';
+import { Lightbox } from '/js/lightbox.js';
 
 // Function to parse front matter from markdown content
 function parseFrontMatter(content) {

@@ -1,11 +1,11 @@
 // js/navigation.js
 
-import { getElement } from './utils.js';
-import { onDOMReady } from './dom-ready.js';
+import { getElement } from '/js/utils.js';
+import { onDOMReady } from '/js/dom-ready.js';
 
 function generateNavHTML() {
-    // Define the common inner HTML structure for the side navigation
-    // Includes all links and the container for photo nav elements
+    // Determine if we are on the main page
+    const isMainPage = window.location.pathname === '/' || window.location.pathname === '/index.html';
     return `
         <div class="logo">
             <a href="/index.html" aria-label="Z Photography Home">
@@ -24,14 +24,14 @@ function generateNavHTML() {
             </li>
         </ul>
         <div class="photo-nav" role="navigation" aria-label="Photo gallery navigation">
-             <div class="nav-helper-text">
-                 ← → Arrow keys: Previous/Next<br>
-                 Spacebar: <span id="pauseText">Pause</span>/<span id="playText">Play</span>
-             </div>
-             <div class="current-number" id="currentPhotoNumber">1</div>
-             <div class="photo-dots" id="photoDots"></div>
-             <p class="copyright-text" id="copyright"></p>
-         </div>
+            ${isMainPage ? `<div class="nav-helper-text">
+                ← → Arrow keys: Previous/Next<br>
+                Spacebar: <span id="pauseText">Pause</span>/<span id="playText">Play</span>
+            </div>` : ''}
+            <div class="current-number" id="currentPhotoNumber">1</div>
+            <div class="photo-dots" id="photoDots"></div>
+            <p class="copyright-text" id="copyright"></p>
+        </div>
     `;
 }
 
