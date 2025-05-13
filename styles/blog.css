@@ -6,23 +6,43 @@
 
 /* Layout styles */
 .layout-container {
-    display: flex;
-    align-items: flex-start;
-    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 80px 1fr 360px;
+    gap: 32px;
 }
 
 .side-nav {
-    width: 200px;
-    flex-shrink: 0;
-    border-right: none;
-    background: transparent;
+    grid-column: 1;
+    width: 80px;
+    min-width: 0;
 }
 
-.blog-post, .blog-main {
-    flex: 1;
-    padding: 2rem 3vw;
-    max-width: 800px;
+.blog-post {
+    grid-column: 2;
+}
+
+.sidebar {
+    grid-column: 3;
+    background: #fff;
+    padding: 1.5rem 1rem 1.5rem 1rem;
     min-width: 0;
+    width: 360px;
+}
+
+#instagram-sidebar-gallery {
+    margin-top: 0;
+}
+.ig-grid {
+    gap: 4px;
+}
+.ig-grid-item img {
+    width: 90px;
+    height: 90px;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
 }
 
 .blog-main h1 {
@@ -248,17 +268,13 @@
 /* Responsive Design */
 @media (max-width: 900px) {
     .layout-container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
-    .side-nav {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        background: #fafbfc;
+    .side-nav, .sidebar {
+        display: none;
     }
-    .blog-main {
-        padding: 1rem;
-        max-width: 100%;
+    .blog-post {
+        grid-column: 1;
     }
 }
 
