@@ -2,8 +2,9 @@ name: Update Instagram Feed
 
 on:
   schedule:
-    # Runs every hour
-    - cron: '0 * * * *'
+    # Runs at 10 AM and 5 PM ET (14:00/15:00 and 21:00/22:00 UTC)
+    - cron: '0 14,21 * * *'  # Standard Time
+    - cron: '0 15,22 * * *'  # Daylight Savings Time
   # Allows manual triggering from GitHub UI
   workflow_dispatch:
 
