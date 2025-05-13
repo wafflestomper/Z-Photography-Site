@@ -44,7 +44,6 @@ main {
 
     /* Hide desktop-specific elements */
     .photo-nav,
-    .photo-dots,
     .nav-helper-text {
         display: none !important;
     }
@@ -103,43 +102,8 @@ main {
     line-height: 1.2;
 }
 
-/* Make Pause/Play text blue - REMOVED */
-/*
-.nav-helper-text #pauseText,
-.nav-helper-text #playText {
-    color: var(--accent-color);
-}
-*/
-
 .current-number {
     display: none;
-}
-
-.photo-dots {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    width: 100%;
-    background-color: var(--primary-color);
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: all var(--transition-speed);
-    margin: 0 auto;
-}
-
-.dot:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.dot.active {
-    background-color: var(--text-color);
-    transform: scale(1.2);
 }
 
 .copyright-text {
@@ -162,5 +126,5 @@ main {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 0 50px;
+    padding: 0;
 } 

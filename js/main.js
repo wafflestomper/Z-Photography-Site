@@ -4,9 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize photo showcase
     const photoShowcase = document.getElementById('photoShowcase');
     const currentNumberEl = document.getElementById('currentPhotoNumber');
-    const photoDotsContainer = document.getElementById('photoDots');
     
-    const photoManager = new PhotoManager(photoShowcase, currentNumberEl, photoDotsContainer);
+    const photoManager = new PhotoManager(photoShowcase, currentNumberEl);
     
     // Add keyboard event listeners
     document.addEventListener('keydown', (e) => {

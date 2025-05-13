@@ -23,13 +23,15 @@ function generateNavHTML() {
                 </a>
             </li>
         </ul>
+        <div class="upcoming-shoot" id="upcomingShoot">
+            <!-- Content will be loaded dynamically -->
+        </div>
         <div class="photo-nav" role="navigation" aria-label="Photo gallery navigation">
             ${isMainPage ? `<div class="nav-helper-text">
                 ← → Arrow keys: Previous/Next<br>
                 Spacebar: <span id="pauseText">Pause</span>/<span id="playText">Play</span>
             </div>` : ''}
             <div class="current-number" id="currentPhotoNumber">1</div>
-            <div class="photo-dots" id="photoDots"></div>
             <p class="copyright-text" id="copyright"></p>
         </div>
     `;
@@ -70,6 +72,75 @@ function setPhoneNumber() {
     }
 }
 
+// Add function to load and display upcoming shoot
+async function loadUpcomingShoot() {
+    try {
+        const response = await fetch('/data/upcoming-shoot.json');
+        if (!response.ok) throw new Error('Failed to fetch upcoming shoot data');
+        const data = await response.json();
+        
+        const upcomingShootEl = document.getElementById('upcomingShoot');
+        if (!upcomingShootEl) return;
+
+        // Get current date
+        const now = new Date();
+        
+        // Find the next upcoming shoot
+        const nextShoot = data.upcomingShoots.find(shoot => {
+            const shootDate = new Date(shoot.date);
+            return shootDate >= now;
+        });
+
+        // If no upcoming shoots found, hide the section
+        if (!nextShoot) {
+            upcomingShootEl.style.display = 'none';
+            return;
+        }
+
+        // Show the section if we have a shoot
+        upcomingShootEl.style.display = 'block';
+
+        const { date, eventName, location, description, image, type, details } = nextShoot;
+        const formattedDate = new Date(date).toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Format time if available
+        const timeInfo = details.startTime ? 
+            `${details.startTime}${details.endTime ? ` - ${details.endTime}` : ''}` : '';
+
+        upcomingShootEl.innerHTML = `
+            <h3>Next Event</h3>
+            <div class="upcoming-shoot-card">
+                ${image ? `<img src="${image}" alt="${eventName}" loading="lazy">` : ''}
+                <div class="upcoming-shoot-details">
+                    <h4>${eventName}</h4>
+                    <p class="date">${formattedDate}</p>
+                    ${timeInfo ? `<p class="time">${timeInfo}</p>` : ''}
+                    <p class="location">${location}</p>
+                    ${details ? `
+                        <div class="shoot-details">
+                            ${details.teams ? `<p class="teams">Teams: ${details.teams.join(', ')}</p>` : ''}
+                            ${details.sessionType ? `<p class="session-type">Session: ${details.sessionType}</p>` : ''}
+                            ${details.numberOfSubjects ? `<p class="subjects">Subjects: ${details.numberOfSubjects}</p>` : ''}
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error loading upcoming shoot:', error);
+        // Hide the section on error
+        const upcomingShootEl = document.getElementById('upcomingShoot');
+        if (upcomingShootEl) {
+            upcomingShootEl.style.display = 'none';
+        }
+    }
+}
+
+// Update the renderNavigation function to include loading the upcoming shoot
 function renderNavigation() {
     const navContainer = getElement('main-nav');
     if (!navContainer) return;
@@ -78,6 +149,7 @@ function renderNavigation() {
     setCopyrightText();
     setEmailAddress();
     setPhoneNumber();
+    loadUpcomingShoot();
 }
 
 // Initialize navigation

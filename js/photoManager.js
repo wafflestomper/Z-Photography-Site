@@ -1,9 +1,8 @@
 // Photo Manager Module
 export class PhotoManager {
-    constructor(photoShowcase, currentNumberEl, photoDotsContainer) {
+    constructor(photoShowcase, currentNumberEl) {
         this.photoShowcase = photoShowcase;
         this.currentNumberEl = currentNumberEl;
-        this.photoDotsContainer = photoDotsContainer;
         this.pauseTextEl = document.getElementById('pauseText'); // Get pause element
         this.playTextEl = document.getElementById('playText');   // Get play element
         this.currentPhotoIndex = 0;
@@ -44,7 +43,6 @@ export class PhotoManager {
             } else {
                 // Append preloaded images to the showcase container for desktop
                 this.photos.forEach(photo => this.photoShowcase.appendChild(photo));
-                this.createNavigationDots();
                 const randomStartIndex = Math.floor(Math.random() * this.photos.length);
                 this.changePhoto(randomStartIndex); // Show initial random photo
                 this.startAutoRotate();
@@ -159,12 +157,11 @@ export class PhotoManager {
                 console.error("Attempted to show null photo at index", this.currentPhotoIndex);
             }
 
-             // Ensure photo nav updates only if elements exist
-             if (this.currentNumberEl && this.photoDotsContainer) {
+            // Update photo number if element exists
+            if (this.currentNumberEl) {
                 this.updatePhotoNav();
-             }
-
-        }, 500); // Match this delay to the CSS transition duration
+            }
+        }, 500); // Match this with CSS transition duration
     }
 
     displayAllPhotosVertically() {
@@ -182,9 +179,6 @@ export class PhotoManager {
         });
 
         // Hide desktop navigation elements
-        if (this.photoDotsContainer) {
-            this.photoDotsContainer.style.display = 'none';
-        }
         if (this.currentNumberEl) {
             this.currentNumberEl.style.display = 'none';
         }
@@ -196,34 +190,11 @@ export class PhotoManager {
     // --- Navigation ---
 
     updatePhotoNav() {
-        // Ensure elements exist before trying to update
-        if (!this.currentNumberEl || !this.photoDotsContainer) return;
+        // Ensure element exists before trying to update
+        if (!this.currentNumberEl) return;
         if (!this.photos.length) return;
         
         this.currentNumberEl.textContent = (this.currentPhotoIndex + 1).toString();
-
-        const dots = this.photoDotsContainer.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentPhotoIndex);
-        });
-    }
-
-    createNavigationDots() {
-        if (!this.photoDotsContainer) return;
-        this.photoDotsContainer.innerHTML = ''; // Clear existing dots
-        this.photos.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            dot.dataset.index = index;
-            dot.addEventListener('click', () => {
-                this.stopAutoRotate();
-                this.isPausedBySpacebar = false; // Clicking dot should resume play
-                this.changePhoto(index);
-                this.startAutoRotate();
-                this.updatePausePlayText(); // Update text in case it was paused
-            });
-            this.photoDotsContainer.appendChild(dot);
-        });
     }
 
     previousPhoto() {
@@ -309,7 +280,6 @@ export class PhotoManager {
         }
 
         // Restore display property of nav elements in case they were hidden
-        if (this.photoDotsContainer) this.photoDotsContainer.style.display = 'grid';
         if (this.currentNumberEl) this.currentNumberEl.style.display = 'block';
         if (this.pauseTextEl) this.pauseTextEl.style.display = 'inline'; // Use inline or block as appropriate
         if (this.playTextEl) this.playTextEl.style.display = 'inline';
@@ -319,20 +289,12 @@ export class PhotoManager {
             this.displayAllPhotosVertically(); // Handles hiding nav elements
         } else {
             // Re-append original photo elements for desktop carousel
-             this.photos.forEach(photo => {
-                 photo.className = 'showcase-photo'; // Reset class
-                 photo.style.opacity = '0'; // Start hidden
-                 this.photoShowcase.appendChild(photo);
-             });
-
-             // Recreate dots if needed (e.g., if they were missing)
-             if (!this.photoDotsContainer || this.photoDotsContainer.children.length !== this.photos.length) {
-                 this.createNavigationDots();
-             }
-             
-             // If navigation dots exist, ensure they are visible
-             if (this.photoDotsContainer) this.photoDotsContainer.style.display = 'grid'; 
-
+            this.photos.forEach(photo => {
+                photo.className = 'showcase-photo'; // Reset class
+                photo.style.opacity = '0'; // Start hidden
+                this.photoShowcase.appendChild(photo);
+            });
+            
             // Ensure photo number is visible
             if (this.currentNumberEl) this.currentNumberEl.style.display = 'block';
 

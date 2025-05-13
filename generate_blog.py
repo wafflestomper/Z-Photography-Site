@@ -40,13 +40,15 @@ def parse_markdown(md_path):
         idx = int(match.group(1)) - 1
         align = match.group(2) or 'right'
         align = align.lower()
+        width = match.group(3)
         img = get_image(idx)
         if not img:
             return ''
         src, alt = img
-        return f'<img src="{src}" alt="{alt}" class="inline-image {align}" />'
-    # Replace [INLINE_IMAGE1 align=right] or [INLINE_IMAGE1]
-    body = re.sub(r'\[INLINE_IMAGE(\d+)(?: align=(left|right))?\]', replace_inline_image, body)
+        style = f' style="width:{width};"' if width else ''
+        return f'<a href="{src}" class="enlarge-image"><img src="{src}" alt="{alt}" class="inline-image {align}"{style} /></a>'
+    # Replace [INLINE_IMAGE1 align=right width=50%] or [INLINE_IMAGE1 width=50%] or [INLINE_IMAGE1]
+    body = re.sub(r'\[INLINE_IMAGE(\d+)(?: align=(left|right))?(?: width=([\d.]+%|[\d.]+px))?\]', replace_inline_image, body)
     return meta, body
 
 def render_template(template, context):
@@ -125,7 +127,7 @@ def main():
             'imageAlt': post.get('imageAlt', post['title']),
             'content': content_no_title,
             'posts': [
-                {'title': p['title'], 'date': p['date'], 'url': p['url']} for p in posts
+                {'title': p['title'], 'date': p['date'], 'url': f'/blog/posts/{p["slug"]}.html'} for p in posts
             ],
             'olderPost': posts[i+1] if i+1 < len(posts) else None,
             'newerPost': posts[i-1] if i-1 >= 0 else None,
@@ -151,11 +153,11 @@ def main():
             'imageAlt': most_recent.get('imageAlt', most_recent['title']),
             'content': content_no_title,
             'posts': [
-                {'title': p['title'], 'date': p['date'], 'url': p['url']} for p in posts
+                {'title': p['title'], 'date': p['date'], 'url': f'/blog/posts/{p["slug"]}.html'} for p in posts
             ],
             'olderPost': {
                 'title': posts[1]['title'],
-                'url': f'posts/{posts[1]["slug"]}.html'
+                'url': f'/blog/posts/{posts[1]["slug"]}.html'
             } if len(posts) > 1 else None,
             # Do not set newerPost for index
         }
