@@ -12,6 +12,44 @@
                 "events": ["Family", "Portrait"]
             }
         },
+           {
+            "date": "2025-05-18",
+            "eventName": "Be. Emotional Health Headshots",
+            "location": "Be. Emotional Health Office",
+            "description": "Headshots",
+            "type": "headshots",
+            "details": {
+                "startTime": "11:00 AM",
+                "endTime": "12:00 PM",
+                "events": ["Headshots"]
+            }
+        },
+         {
+            "date": "2025-05-18",
+            "eventName": "Senior Party",
+            "location": "Butterfield Residence",
+            "description": "Senior Candids",
+            "type": "candids",
+            "details": {
+                "startTime": "4:30 PM",
+                "endTime": "5:30 PM",
+                "events": ["Candids"]
+            }
+        },
+         {
+            "date": "2025-05-18",
+            "eventName": "Be. Emotional Health Headshots",
+            "location": "Be. Emotional Health Office",
+            "description": "Headshots",
+            "type": "headshots",
+            "details": {
+                "startTime": "6:30 PM",
+                "endTime": "7:30 PM",
+                "events": ["Headshots"]
+            }
+        },
+
+        
         {
             "date": "2024-04-20",
             "eventName": "State Basketball Championship",
