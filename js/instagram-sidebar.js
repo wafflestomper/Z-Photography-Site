@@ -1,13 +1,45 @@
-const ACCESS_TOKEN = 'EAAROKj7g0j0BOxt0bCutwHwSryzJZCcquzXhUy1EkHRDHRZBiFZANAgvIzSDbSXmGRbpEhZBzVEG8qG4qSKJsiwRlecqtmP2scyZAHjfaF69TvO0NA9400YdPWZC9TEgT7jrRiNYyNtRZCCjEAev7zcuerNboBAAqD72rwzngmgT9ZCmPs1E1ZBUIW2EfdwRtm06SfDXhFkfajbtAmyXZCT7JlZAlOAQ7a1QQZDZD'; // Replace with your full token for dev
+// Load environment variables
+let ACCESS_TOKEN = null;
 const IG_USER_ID = '17841401845000174';
 const MEDIA_COUNT = 5;
 
+async function getAccessToken() {
+    if (!ACCESS_TOKEN) {
+        try {
+            const response = await fetch('/api/instagram-token');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            if (!data.token) {
+                throw new Error('No token received from server');
+            }
+            ACCESS_TOKEN = data.token;
+        } catch (error) {
+            console.error('Error fetching Instagram token:', error);
+            throw error;
+        }
+    }
+    return ACCESS_TOKEN;
+}
+
 async function fetchInstagramMedia() {
-    const url = `https://graph.facebook.com/v22.0/${IG_USER_ID}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${ACCESS_TOKEN}&limit=${MEDIA_COUNT}`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Failed to fetch Instagram media');
-    const data = await response.json();
-    return data.data || [];
+    try {
+        const token = await getAccessToken();
+        if (!token) {
+            throw new Error('No access token available');
+        }
+        const url = `https://graph.facebook.com/v22.0/${IG_USER_ID}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${token}&limit=${MEDIA_COUNT}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch Instagram media: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.data || [];
+    } catch (error) {
+        console.error('Error in fetchInstagramMedia:', error);
+        throw error;
+    }
 }
 
 function renderInstagramGrid(media) {
