@@ -1,4 +1,6 @@
 // Lightbox Module
+import { onDOMReady } from '/js/dom-ready.js';
+
 export class Lightbox {
     constructor() {
         this.modal = null;
@@ -8,6 +10,7 @@ export class Lightbox {
     init() {
         this.createLightbox();
         this.setupEventListeners();
+        console.log('Lightbox initialized'); // Debug log
     }
 
     createLightbox() {
@@ -21,6 +24,7 @@ export class Lightbox {
             <img class="lightbox-img" src="" alt="Enlarged image">
         `;
         document.body.appendChild(this.modal);
+        console.log('Lightbox modal created'); // Debug log
     }
 
     setupEventListeners() {
@@ -39,13 +43,14 @@ export class Lightbox {
             if (this.modal.style.display !== 'none' && e.key === 'Escape') this.close();
         });
 
-        // Handle clicks on enlarge-image links
+        // Handle clicks on enlarge-image links and their child images
         document.body.addEventListener('click', (e) => {
-            const a = e.target.closest('a.enlarge-image');
-            if (a) {
+            const link = e.target.closest('a.enlarge-image');
+            if (link) {
                 e.preventDefault();
-                const img = a.querySelector('img');
-                this.open(a.href, img ? img.alt : '');
+                const img = link.querySelector('img');
+                console.log('Enlarge image clicked:', link.href); // Debug log
+                this.open(link.href, img ? img.alt : '');
             }
         });
     }
@@ -56,14 +61,17 @@ export class Lightbox {
         img.src = src;
         img.alt = alt || '';
         this.modal.style.display = 'flex';
+        console.log('Lightbox opened:', src); // Debug log
     }
 
     close() {
         if (this.modal) this.modal.style.display = 'none';
+        console.log('Lightbox closed'); // Debug log
     }
 }
 
 // Initialize lightbox when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+onDOMReady(() => {
+    console.log('DOM ready, initializing lightbox'); // Debug log
     window.lightbox = new Lightbox();
 }); 
