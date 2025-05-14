@@ -1,0 +1,88 @@
+/* Critical CSS - Above the fold styles */
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #FFFFFF;
+    --text-color: #333333;
+    --accent-color: #2563EB;
+    --nav-width: 240px;
+    --transition-speed: 0.3s;
+    --font-body: 'Nunito Sans', sans-serif;
+    --font-heading: 'Literata', serif;
+}
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    display: flex;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+/* Layout */
+main {
+    margin-left: var(--nav-width);
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    position: relative;
+}
+
+/* Navigation - Critical parts */
+.side-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--nav-width);
+    height: 100vh;
+    background-color: var(--primary-color);
+    z-index: 1000;
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 1100;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+/* Critical Media Queries */
+@media (max-width: 768px) {
+    :root {
+        --nav-width: 0px;
+    }
+
+    .side-nav {
+        transform: translateX(-100%);
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    main {
+        margin-left: 0;
+    }
+} 
