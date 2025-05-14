@@ -5,63 +5,37 @@ permissions:
 
 on:
   schedule:
-    # Runs at 10 AM and 5 PM ET (14:00/15:00 and 21:00/22:00 UTC)
-    - cron: '0 14,21 * * *'  # Standard Time
-    - cron: '0 15,22 * * *'  # Daylight Savings Time
+    # Runs at 10 AM and 10 PM UTC
+    - cron: '0 10,22 * * *'
   # Allows manual triggering from GitHub UI
   workflow_dispatch:
 
 jobs:
   update-feed:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '20'
-
+          python-version: '3.x'
+      
       - name: Install dependencies
-        run: npm install
-
-      - name: Create .env file
         run: |
-          echo "INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }}" > .env
-          echo "IG_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }}" >> .env
-
-      - name: Check token expiration
-        id: check-token
-        run: |
-          # Get token creation date from GitHub secret metadata
-          TOKEN_CREATED=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/secrets/INSTAGRAM_ACCESS_TOKEN" \
-            | jq -r '.created_at')
-          
-          # Calculate days since token creation
-          TOKEN_AGE=$(( ($(date +%s) - $(date -d "$TOKEN_CREATED" +%s)) / 86400 ))
-          
-          # If token is older than 50 days, create an issue
-          if [ $TOKEN_AGE -gt 50 ]; then
-            curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${{ github.repository }}/issues" \
-              -d '{
-                "title": "Instagram Token Expiring Soon",
-                "body": "Your Instagram access token will expire in '$(($TOKEN_AGE - 60))' days. Please update it in the repository secrets to avoid disruption of the Instagram feed.\n\n## Detailed Update Instructions\n\n### Step 1: Generate New Token\n1. Go to [Graph API Explorer](https://developers.facebook.com/tools/explorer/)\n2. Log in with your Facebook account if prompted\n3. In the top dropdown menu, select your app (Z-Photography)\n4. Click the \"Generate Access Token\" button\n5. In the popup, you will see a list of permissions. Make sure to check these EXACT permissions:\n   - instagram_basic\n   - instagram_content_publish\n   - pages_show_list\n6. Click \"Generate Access Token\"\n7. Copy the entire token that appears in the \"Access Token\" field\n\n### Step 2: Update GitHub Secret\n1. Go to your repository: https://github.com/wafflestomper/Z-Photography-Site\n2. Click on \"Settings\" (top navigation)\n3. In the left sidebar, click \"Secrets and variables\" → \"Actions\"\n4. Find the \"INSTAGRAM_ACCESS_TOKEN\" secret\n5. Click the \"Update\" button (pencil icon)\n6. Paste your new token into the \"Value\" field\n7. Click \"Update secret\"\n\n### Step 3: Verify Update\n1. Go to the \"Actions\" tab in your repository\n2. Click on \"Update Instagram Feed\" in the left sidebar\n3. Click \"Run workflow\" → \"Run workflow\"\n4. Wait for the workflow to complete\n5. Check that the Instagram feed is still working on your website\n\n### Important Notes\n- The token will be valid for exactly 60 days\n- You will receive another notification when it is time to update again\n- Keep this token secure and never share it\n- If you need to generate a new token before the 60 days are up, follow these same steps\n\n### Troubleshooting\nIf the Instagram feed stops working after updating the token:\n1. Double-check that you copied the entire token\n2. Verify all required permissions were selected\n3. Make sure you updated the correct secret (INSTAGRAM_ACCESS_TOKEN)\n4. Try running the workflow manually to force an update"
-              }'
-          fi
-
+          python -m pip install --upgrade pip
+          pip install requests
+      
       - name: Update Instagram feed
-        run: npm run build
-
+        run: |
+          python scripts/update_instagram_feed.py
+      
       - name: Commit and push if changed
         run: |
           git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add data/instagram.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update Instagram feed [skip ci]" && git push) 
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Update Instagram feed [skip ci]" || exit 0
+          git push origin HEAD:main 
