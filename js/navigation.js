@@ -16,12 +16,7 @@ function generateNavHTML() {
             <li data-page="about.html"><a href="/about.html">About</a></li>
             <li data-page="blog/index.html"><a href="/blog/index.html">Blog</a></li>
             <li data-page="galleries"><a href="https://zollinhofer.com" target="_blank" rel="noopener noreferrer">Galleries</a></li>
-            <li data-page="contact.html">
-                <a href="/contact.html">
-                    <span class="desktop-only"><span class="large-first-letter">C</span>ontact</span>
-                    <span class="mobile-only">Contact</span>
-                </a>
-            </li>
+            <li data-page="contact.html"><a href="/contact.html">Contact</a></li>
         </ul>
         <div class="upcoming-shoot" id="upcomingShoot">
             <!-- Content will be loaded dynamically -->
@@ -89,9 +84,9 @@ async function loadUpcomingShoot() {
         // Find the next two upcoming shoots
         const nextShoots = data.upcomingShoots
             .filter(shoot => {
-                const shootDate = new Date(shoot.date);
+            const shootDate = new Date(shoot.date);
                 shootDate.setHours(0, 0, 0, 0);
-                return shootDate >= now;
+            return shootDate >= now;
             })
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .slice(0, 2);
@@ -109,32 +104,32 @@ async function loadUpcomingShoot() {
         const shootsHTML = nextShoots.map((shoot, index) => {
             const { date, eventName, location, description, image, type, details } = shoot;
             const formattedDate = new Date(date).toLocaleDateString('en-US', {
-                weekday: 'long',
-                month: 'long',
+            weekday: 'long',
+            month: 'long',
                 day: 'numeric'
-            });
+        });
 
-            // Format time if available
-            const timeInfo = details.startTime ? 
-                `${details.startTime}${details.endTime ? ` - ${details.endTime}` : ''}` : '';
+        // Format time if available
+        const timeInfo = details.startTime ? 
+            `${details.startTime}${details.endTime ? ` - ${details.endTime}` : ''}` : '';
 
             return `
-                <div class="upcoming-shoot-card">
-                    ${image ? `<img src="${image}" alt="${eventName}" loading="lazy">` : ''}
-                    <div class="upcoming-shoot-details">
-                        <h4>${eventName}</h4>
-                        <p class="date">${formattedDate}</p>
-                        ${timeInfo ? `<p class="time">${timeInfo}</p>` : ''}
-                        <p class="location">${location}</p>
-                        ${details ? `
-                            <div class="shoot-details">
-                                ${details.teams ? `<p class="teams">Teams: ${details.teams.join(', ')}</p>` : ''}
-                                ${details.sessionType ? `<p class="session-type">Session: ${details.sessionType}</p>` : ''}
-                                ${details.numberOfSubjects ? `<p class="subjects">Subjects: ${details.numberOfSubjects}</p>` : ''}
-                            </div>
-                        ` : ''}
-                    </div>
+            <div class="upcoming-shoot-card">
+                ${image ? `<img src="${image}" alt="${eventName}" loading="lazy">` : ''}
+                <div class="upcoming-shoot-details">
+                    <h4>${eventName}</h4>
+                    <p class="date">${formattedDate}</p>
+                    ${timeInfo ? `<p class="time">${timeInfo}</p>` : ''}
+                    <p class="location">${location}</p>
+                    ${details ? `
+                        <div class="shoot-details">
+                            ${details.teams ? `<p class="teams">Teams: ${details.teams.join(', ')}</p>` : ''}
+                            ${details.sessionType ? `<p class="session-type">Session: ${details.sessionType}</p>` : ''}
+                            ${details.numberOfSubjects ? `<p class="subjects">Subjects: ${details.numberOfSubjects}</p>` : ''}
+                        </div>
+                    ` : ''}
                 </div>
+            </div>
             `;
         }).join('');
 
