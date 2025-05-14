@@ -1,12 +1,25 @@
+/* Main CSS file - Imports all other stylesheets */
+
+/* Critical CSS - Load this first */
+@import 'critical.css';
+
+/* Base styles */
+@import 'base.css';
+
+/* Variables */
 @import 'variables.css';
-@import 'navigation.css';
-@import 'photo-showcase.css';
-@import 'about.css';
-@import 'contact.css';
+
+/* Layout and utilities */
 @import 'utilities.css';
 
-/* All specific styles have been moved to the imported files. */
-/* This file now only serves to import the modular stylesheets. */
+/* Components */
+@import 'components/navigation.css';
+@import 'components/photo-showcase.css';
+@import 'components/about.css';
+@import 'components/contact.css';
+
+/* Responsive styles - Load last */
+@import 'responsive.css';
 
 /* Contact Page CTA Button */
 .cta-button {
