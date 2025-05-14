@@ -36,18 +36,6 @@
 #instagram-sidebar-gallery {
     margin-top: 0;
 }
-.ig-grid {
-    gap: 4px;
-}
-.ig-grid-item img {
-    width: 90px;
-    height: 90px;
-    max-width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
-}
 
 .blog-main h1 {
     font-size: 2.5rem;
