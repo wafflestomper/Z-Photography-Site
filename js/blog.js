@@ -53,7 +53,9 @@ function createBlogCard(post) {
     const date = formatDate(post.metadata.date);
     
     card.innerHTML = `
-        <img src="${post.metadata.featuredImage}" alt="${post.metadata.title}" class="blog-card-image">
+        <a href="${post.metadata.featuredImage}" class="enlarge-image">
+            <img src="${post.metadata.featuredImage}" alt="${post.metadata.title}" class="blog-card-image">
+        </a>
         <div class="blog-card-content">
             <h2 class="blog-card-title">${post.metadata.title}</h2>
             <p class="blog-card-excerpt">${post.metadata.excerpt}</p>
@@ -180,9 +182,6 @@ function setupSearch() {
 
 // Initialize blog functionality
 onDOMReady(() => {
-    // Initialize lightbox
-    window.lightbox = new Lightbox();
-    
     // Then initialize other blog features
     if (window.location.pathname.startsWith('/blog/')) {
         loadBlogPosts();
