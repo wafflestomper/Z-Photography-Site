@@ -1,5 +1,5 @@
 // Load environment variables
-const MEDIA_COUNT = 5;
+const MEDIA_COUNT = 10;
 
 async function loadInstagramData() {
     try {
@@ -18,7 +18,9 @@ async function loadInstagramData() {
 function renderInstagramGrid(media) {
     const container = document.getElementById('instagram-sidebar-gallery');
     if (!container) return;
-    let html = '<h3 class="ig-sidebar-heading" style="text-align:center;">Latest on Instagram</h3><div class="ig-grid">';
+    let html = '<h3 class="ig-sidebar-heading" style="text-align:center;">Latest on Instagram</h3>';
+    html += `<a href="https://www.instagram.com/brianzollinhofer/" target="_blank" rel="noopener" class="ig-follow-btn">Follow @brianzollinhofer</a>`;
+    html += '<div class="ig-grid">';
     media.slice(0, MEDIA_COUNT).forEach(item => {
         html += `<a href="${item.permalink}" target="_blank" rel="noopener" class="ig-grid-item">
             <img src="${item.media_url}" alt="${item.caption || 'Instagram photo'}" loading="lazy" />
@@ -54,20 +56,42 @@ function addStyles() {
       font-weight: bold;
       text-align: center;
     }
+    .ig-follow-btn {
+      display: block;
+      width: 90%;
+      margin: 0 auto 0.75rem auto;
+      background: #0095F6;
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 6px;
+      padding: 0.5rem 0;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .ig-follow-btn:hover {
+      background: #0081D6;
+    }
     .ig-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 8px;
+      gap: 6px;
+    }
+    .ig-grid-item {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
     .ig-grid-item img {
-      width: 100%;
-      max-width: 320px;
+      width: 250px;
       height: auto;
-      aspect-ratio: 1/1;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 4px;
       display: block;
-      margin: 0 auto;
+      margin: 0;
     }
     `;
     document.head.appendChild(style);

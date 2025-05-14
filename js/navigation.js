@@ -84,51 +84,63 @@ async function loadUpcomingShoot() {
 
         // Get current date
         const now = new Date();
+        now.setHours(0, 0, 0, 0); // Set to start of day for accurate comparison
         
-        // Find the next upcoming shoot
-        const nextShoot = data.upcomingShoots.find(shoot => {
-            const shootDate = new Date(shoot.date);
-            return shootDate >= now;
-        });
+        // Find the next two upcoming shoots
+        const nextShoots = data.upcomingShoots
+            .filter(shoot => {
+                const shootDate = new Date(shoot.date);
+                shootDate.setHours(0, 0, 0, 0);
+                return shootDate >= now;
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .slice(0, 2);
 
         // If no upcoming shoots found, hide the section
-        if (!nextShoot) {
+        if (nextShoots.length === 0) {
             upcomingShootEl.style.display = 'none';
             return;
         }
 
-        // Show the section if we have a shoot
+        // Show the section if we have shoots
         upcomingShootEl.style.display = 'block';
 
-        const { date, eventName, location, description, image, type, details } = nextShoot;
-        const formattedDate = new Date(date).toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'long',
-            day: 'numeric'
-        });
+        // Generate HTML for each shoot
+        const shootsHTML = nextShoots.map((shoot, index) => {
+            const { date, eventName, location, description, image, type, details } = shoot;
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric'
+            });
 
-        // Format time if available
-        const timeInfo = details.startTime ? 
-            `${details.startTime}${details.endTime ? ` - ${details.endTime}` : ''}` : '';
+            // Format time if available
+            const timeInfo = details.startTime ? 
+                `${details.startTime}${details.endTime ? ` - ${details.endTime}` : ''}` : '';
+
+            return `
+                <div class="upcoming-shoot-card">
+                    ${image ? `<img src="${image}" alt="${eventName}" loading="lazy">` : ''}
+                    <div class="upcoming-shoot-details">
+                        <h4>${eventName}</h4>
+                        <p class="date">${formattedDate}</p>
+                        ${timeInfo ? `<p class="time">${timeInfo}</p>` : ''}
+                        <p class="location">${location}</p>
+                        ${details ? `
+                            <div class="shoot-details">
+                                ${details.teams ? `<p class="teams">Teams: ${details.teams.join(', ')}</p>` : ''}
+                                ${details.sessionType ? `<p class="session-type">Session: ${details.sessionType}</p>` : ''}
+                                ${details.numberOfSubjects ? `<p class="subjects">Subjects: ${details.numberOfSubjects}</p>` : ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
 
         upcomingShootEl.innerHTML = `
-            <h3>Next Event</h3>
-            <div class="upcoming-shoot-card">
-                ${image ? `<img src="${image}" alt="${eventName}" loading="lazy">` : ''}
-                <div class="upcoming-shoot-details">
-                    <h4>${eventName}</h4>
-                    <p class="date">${formattedDate}</p>
-                    ${timeInfo ? `<p class="time">${timeInfo}</p>` : ''}
-                    <p class="location">${location}</p>
-                    ${details ? `
-                        <div class="shoot-details">
-                            ${details.teams ? `<p class="teams">Teams: ${details.teams.join(', ')}</p>` : ''}
-                            ${details.sessionType ? `<p class="session-type">Session: ${details.sessionType}</p>` : ''}
-                            ${details.numberOfSubjects ? `<p class="subjects">Subjects: ${details.numberOfSubjects}</p>` : ''}
-                        </div>
-                    ` : ''}
-                </div>
-            </div>
+            <h3>Upcoming Events</h3>
+            ${shootsHTML}
         `;
     } catch (error) {
         console.error('Error loading upcoming shoot:', error);
