@@ -39,3 +39,46 @@ jobs:
           git add .
           git commit -m "Update Instagram feed" || exit 0
           git push "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main 
+
+      - name: Test - Echo
+        run: echo "This is a test step"
+
+      - name: Debug - Check Secrets
+        run: |
+          echo "Checking if secrets are available..."
+          if [ -n "${{ secrets.DREAMHOST_HOST }}" ]; then
+            echo "DREAMHOST_HOST is set"
+          else
+            echo "DREAMHOST_HOST is not set"
+          fi
+          if [ -n "${{ secrets.DREAMHOST_USERNAME }}" ]; then
+            echo "DREAMHOST_USERNAME is set"
+          else
+            echo "DREAMHOST_USERNAME is not set"
+          fi
+          if [ -n "${{ secrets.DREAMHOST_SSH_KEY }}" ]; then
+            echo "DREAMHOST_SSH_KEY is set"
+          else
+            echo "DREAMHOST_SSH_KEY is not set"
+          fi
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.DREAMHOST_SSH_KEY }}
+
+      - name: Debug - Check SSH
+        run: |
+          echo "Checking SSH configuration..."
+          ssh-add -l
+          echo "Testing SSH connection..."
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} 'echo "SSH connection successful"'
+
+      - name: Deploy to DreamHost
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} '
+            cd /home/brizol/z-photography.com
+            git pull origin main
+            npm install
+            npm run build
+          '
