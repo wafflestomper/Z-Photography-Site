@@ -73,7 +73,7 @@ jobs:
 
       - name: Deploy to DreamHost
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} '
+          ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} /bin/bash <<'ENDSSH'
             cd /home/brizol/z-photography.com || exit 1
             
             # Install nvm if not present
@@ -105,4 +105,4 @@ jobs:
             # Install dependencies and build
             npm install
             INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }} npm run build
-          '
+          ENDSSH
