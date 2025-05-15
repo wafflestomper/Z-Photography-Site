@@ -40,9 +40,6 @@ jobs:
           git commit -m "Update Instagram feed" || exit 0
           git push "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main 
 
-      - name: Test - Echo
-        run: echo "This is a test step"
-
       - name: Debug - Check Secrets
         run: |
           echo "Checking if secrets are available..."
@@ -77,8 +74,26 @@ jobs:
       - name: Deploy to DreamHost
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} '
-            cd /home/brizol/z-photography.com
+            cd /home/brizol/z-photography.com || exit 1
+            
+            # Install Node.js and npm if not present
+            if ! command -v npm &> /dev/null; then
+              echo "Installing Node.js and npm..."
+              curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+            fi
+            
+            # Initialize git repository if it doesn't exist
+            if [ ! -d .git ]; then
+              echo "Initializing git repository..."
+              git init
+              git remote add origin https://github.com/wafflestomper/Z-Photography-Site.git
+            fi
+            
+            # Pull latest changes
             git pull origin main
+            
+            # Install dependencies and build
             npm install
             npm run build
           '
