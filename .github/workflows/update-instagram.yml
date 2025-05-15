@@ -74,7 +74,7 @@ jobs:
       - name: Deploy to DreamHost
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} /bin/bash <<'ENDSSH'
-            cd /home/brizol/z-photography.com || exit 1
+            cd /home/brizol || exit 1
             
             # Install nvm if not present
             if [ ! -d "$HOME/.nvm" ]; then
@@ -92,15 +92,36 @@ jobs:
             nvm install 20
             nvm use 20
             
-            # Initialize git repository if it doesn't exist
-            if [ ! -d .git ]; then
-              echo "Initializing git repository..."
-              git init
-              git remote add origin https://github.com/wafflestomper/Z-Photography-Site.git
+            # Backup existing site if it exists
+            timestamp=$(date +%Y%m%d_%H%M%S)
+            if [ -d "z-photography.com" ]; then
+              echo "Backing up existing site..."
+              if [ ! -d "backups" ]; then
+                mkdir backups
+              fi
+              # Only backup important data files
+              if [ -d "z-photography.com/data" ]; then
+                echo "Backing up data directory..."
+                mkdir -p backups/z-photography_${timestamp}
+                cp -r z-photography.com/data backups/z-photography_${timestamp}/
+              fi
+              
+              # Remove existing directory to prepare for fresh clone
+              rm -rf z-photography.com
             fi
             
-            # Pull latest changes
-            git pull origin main
+            # Fresh clone of the repository
+            echo "Cloning fresh repository..."
+            git clone https://github.com/wafflestomper/Z-Photography-Site.git z-photography.com
+            
+            # Enter the directory
+            cd z-photography.com || exit 1
+            
+            # Restore backed up data if it exists
+            if [ -d "../backups/z-photography_${timestamp}/data" ]; then
+              echo "Restoring data from backup..."
+              cp -r ../backups/z-photography_${timestamp}/data/* data/
+            fi
             
             # Install dependencies and build
             npm install
