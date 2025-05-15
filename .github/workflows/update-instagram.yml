@@ -74,7 +74,10 @@ jobs:
       - name: Deploy to DreamHost
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} /bin/bash <<'ENDSSH'
-            cd /home/brizol/z-photography.com || exit 1
+            set -e  # Exit immediately if a command fails
+            
+            echo "Starting deployment process..."
+            cd /home/brizol || exit 1
             
             # Install nvm if not present
             if [ ! -d "$HOME/.nvm" ]; then
@@ -92,17 +95,44 @@ jobs:
             nvm install 20
             nvm use 20
             
-            # Initialize git repository if it doesn't exist
-            if [ ! -d .git ]; then
-              echo "Initializing git repository..."
-              git init
-              git remote add origin https://github.com/wafflestomper/Z-Photography-Site.git
+            # Backup existing site data if it exists
+            timestamp=$(date +%Y%m%d_%H%M%S)
+            mkdir -p backups
+            
+            if [ -d "z-photography.com/data" ]; then
+              echo "Backing up data directory..."
+              mkdir -p backups/z-photography_${timestamp}
+              cp -r z-photography.com/data backups/z-photography_${timestamp}/
+              echo "Data backup completed"
+            else
+              echo "No data directory found to backup"
             fi
             
-            # Pull latest changes
-            git pull origin main
+            # Remove the entire website directory
+            echo "Removing existing website directory..."
+            rm -rf z-photography.com
+            
+            # Fresh clone of the repository
+            echo "Cloning fresh repository..."
+            git clone https://github.com/wafflestomper/Z-Photography-Site.git z-photography.com
+            
+            # Enter the directory
+            cd z-photography.com || exit 1
+            echo "Now in $(pwd)"
+            
+            # Restore backed up data if it exists
+            if [ -d "../backups/z-photography_${timestamp}/data" ]; then
+              echo "Restoring data from backup..."
+              # Make sure the data directory exists
+              mkdir -p data
+              cp -r ../backups/z-photography_${timestamp}/data/* data/
+              echo "Data restored from backup"
+            fi
             
             # Install dependencies and build
+            echo "Installing dependencies..."
             npm install
+            echo "Building the project..."
             INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }} npm run build
+            echo "Deployment completed successfully"
           ENDSSH
