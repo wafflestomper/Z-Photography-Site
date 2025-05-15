@@ -76,12 +76,21 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} '
             cd /home/brizol/z-photography.com || exit 1
             
-            # Install Node.js and npm if not present
-            if ! command -v npm &> /dev/null; then
-              echo "Installing Node.js and npm..."
-              curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-              sudo apt-get install -y nodejs
+            # Install nvm if not present
+            if [ ! -d "$HOME/.nvm" ]; then
+              echo "Installing nvm..."
+              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+              export NVM_DIR="$HOME/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             fi
+            
+            # Load nvm
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            # Install and use Node.js
+            nvm install 20
+            nvm use 20
             
             # Initialize git repository if it doesn't exist
             if [ ! -d .git ]; then
