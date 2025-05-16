@@ -136,7 +136,7 @@
 
 /* Blog Post Page Styles */
 .blog-post-header {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .blog-post-title {
@@ -148,8 +148,10 @@
 .blog-post-meta {
     display: flex;
     gap: 1rem;
-    color: var(--text-color-light);
-    margin-bottom: 2rem;
+    color: #666;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border-color);
 }
 
 .blog-post-content {
@@ -194,14 +196,15 @@
     border-radius: 8px;
     margin-bottom: 2rem;
     display: block;
+    margin-top: 0;
 }
 
 /* Blog Post Navigation */
 .blog-post-navigation {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
-    padding: 1rem 0;
+    margin: 0;
+    padding: 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -244,7 +247,8 @@
     .blog-post-navigation {
         flex-direction: column;
         gap: 1.5rem;
-        padding: 1rem 0;
+        margin: 0;
+        padding: 0;
     }
 
     .post-nav-link {
@@ -254,6 +258,7 @@
     .post-nav-link.older,
     .post-nav-link.newer {
         text-align: left;
+        margin: 0;
     }
 }
 
@@ -267,6 +272,19 @@
     }
     .blog-post {
         grid-column: 1;
+        padding: 0 10px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    /* Center titles and headers on mobile */
+    .blog-post-title,
+    .blog-post-content h2,
+    .blog-post-content h3 {
+        text-align: center;
+    }
+    /* Center the post meta information (author and date) */
+    .blog-post-meta {
+        justify-content: center;
     }
 }
 
