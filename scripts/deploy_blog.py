@@ -11,6 +11,7 @@ def deploy_blog():
     host = os.getenv('DREAMHOST_HOST')
     username = os.getenv('DREAMHOST_USERNAME')
     remote_path = '/home/brizol/z-photography.com'
+    ssh_key = os.path.expanduser('~/.ssh/dreamhost_deploy_rsa')
     
     if not all([host, username]):
         print("Error: Missing DreamHost credentials in environment variables.")
@@ -25,11 +26,11 @@ def deploy_blog():
             return False
             
         # Create the remote directory structure if it doesn't exist
-        mkdir_cmd = f'ssh {username}@{host} "mkdir -p {remote_path}/blog/posts"'
+        mkdir_cmd = f'ssh -i {ssh_key} {username}@{host} "mkdir -p {remote_path}/blog/posts"'
         subprocess.run(mkdir_cmd, shell=True, check=True)
         
-        # Deploy the main blog files
-        rsync_cmd = f'rsync -av --delete blog/ {username}@{host}:{remote_path}/blog/'
+        # Deploy the main blog files using rsync with SSH key
+        rsync_cmd = f'rsync -av --delete -e "ssh -i {ssh_key}" blog/ {username}@{host}:{remote_path}/blog/'
         print(f"Deploying blog files...")
         subprocess.run(rsync_cmd, shell=True, check=True)
         
