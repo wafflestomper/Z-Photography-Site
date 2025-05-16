@@ -18,12 +18,12 @@
                 {{#if featuredImage}}
                 <img class="blog-post-featured-image" src="{{featuredImage}}" alt="{{imageAlt}}">
                 {{/if}}
-                <div class="blog-post-meta">
-                    <span>{{author}} &ndash; {{dateFormatted}}</span>
-                </div>
             </div>
             <div class="blog-post-content">
                 {{content}}
+            </div>
+            <div class="blog-post-meta">
+                <span>{{author}} &ndash; {{dateFormatted}}</span>
             </div>
             <div class="blog-post-navigation">
                 {{#if newerPost}}
