@@ -4,14 +4,14 @@ date: "2025-05-11"
 author: "Brian Zollinhofer"
 categories: ["Sports Photography", "Personal Journey"]
 tags: ["sports photography", "athletic memories", "camera settings", "composition tips", "equipment advice"]
-featuredImage: "/images/blog/game-winning-goal-lacrosse.jpg"
-imageAlt: "Saints lacrosse player scoring a goal against Hoyas, with teammates and goalie in the background."
+featuredImage: "/images/blog/student-section-passion.jpg"
+imageAlt: "St. Christopher's student section cheering with face paint and pom-poms at football game with drum Richmond VA"
 excerpt: "A teacher-photographer's personal journey into sports photography, sharing technical tips and why preserving athletic moments matters so deeply."
 images:
   - src: /images/blog/game-winning-goal-lacrosse.jpg
     alt: Saints lacrosse player scoring a goal against Hoyas, with teammates and goalie in the background.
-  - src: /images/blog/celebration-photo.jpg
-    alt: Players celebrating after a big win.
+  - src: /images/blog/soccer-celebration.jpg
+    alt: High school soccer team celebrating on sideline wearing red shorts and gray jerseys at Richmond private school match.
 ---
 
 # Sideline Secrets: Why I Capture Athletic Moments That Matter
