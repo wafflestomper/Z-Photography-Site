@@ -2,6 +2,7 @@ import os
 import re
 import glob
 import shutil
+import argparse
 from datetime import datetime
 import markdown
 import yaml
@@ -92,6 +93,11 @@ def render_template(template, context):
     return html
 
 def main():
+    # Add command line argument parsing
+    parser = argparse.ArgumentParser(description='Generate and optionally deploy blog posts')
+    parser.add_argument('--deploy', action='store_true', help='Deploy to DreamHost after generation')
+    args = parser.parse_args()
+
     # Gather all markdown posts
     md_files = sorted(glob.glob(os.path.join(POSTS_DIR, '*.md')))
     posts = []
@@ -108,11 +114,14 @@ def main():
         # Remove duplicate inline image replacement logic
         meta['content'] = markdown.markdown(body)
         posts.append(meta)
+
     # Sort posts by date descending
     posts.sort(key=lambda p: p['date_obj'], reverse=True)
+
     # Load template
     with open(TEMPLATE_PATH, encoding='utf-8') as f:
         template = f.read()
+
     # Generate each post
     for i, post in enumerate(posts):
         # Remove the first <h1>...</h1> from the post content to avoid duplicate titles
@@ -138,6 +147,7 @@ def main():
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(html)
         print(f"Generated {out_path}")
+
     # Generate index.html with most recent post
     if posts:
         most_recent = posts[0]
@@ -165,6 +175,19 @@ def main():
         with open(INDEX_PATH, 'w', encoding='utf-8') as f:
             f.write(render_template(template, ctx))
         print(f"Generated {INDEX_PATH}")
+
+    # Deploy if requested
+    if args.deploy:
+        try:
+            from scripts.deploy_blog import deploy_blog
+            if deploy_blog():
+                print("Blog successfully generated and deployed!")
+            else:
+                print("Blog generation successful, but deployment failed.")
+        except ImportError:
+            print("Warning: Could not import deploy_blog script. Please ensure scripts/deploy_blog.py exists.")
+        except Exception as e:
+            print(f"Error during deployment: {e}")
 
 if __name__ == '__main__':
     main() 
