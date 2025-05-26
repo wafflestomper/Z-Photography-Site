@@ -1,7 +1,12 @@
-.DS_Store
-.env
 node_modules/
-**/.DS_Store
+dist/
+.env
+.DS_Store
+
+# Ignore everything in data directory except instagram-v2.json
+data/*
+!data/instagram-v2.json
+
 # SSH keys
 *_rsa
 *_rsa.pub 
