@@ -31,19 +31,23 @@
 .ig-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 6px;
+    gap: 12px;
 }
 
 .ig-grid-item {
-    display: inline-block;
     width: 250px;
-    text-align: center;
+    margin: 0 auto;
 }
 
-.ig-grid-item img {
-    max-width: 250px;
+.ig-grid-link {
+    display: block;
     width: 100%;
+    text-decoration: none;
+}
+
+.ig-grid-link img {
+    width: 250px;
     height: auto;
     border-radius: 4px;
-    vertical-align: middle;
+    display: block;
 } 
