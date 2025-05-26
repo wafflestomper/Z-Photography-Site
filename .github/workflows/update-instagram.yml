@@ -75,6 +75,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.DREAMHOST_USERNAME }}@${{ secrets.DREAMHOST_HOST }} /bin/bash <<'ENDSSH'
             set -e  # Exit immediately if a command fails
+            set -x  # Enable verbose debugging
             
             echo "Starting deployment process..."
             cd /home/brizol || exit 1
@@ -82,12 +83,13 @@ jobs:
             # Ensure NVM is loaded
             export NVM_DIR="$HOME/.nvm"
             if [ -s "$NVM_DIR/nvm.sh" ]; then
-              \\. "$NVM_DIR/nvm.sh"
+              . "$NVM_DIR/nvm.sh" # Source NVM script
             else
               echo "NVM not found, attempting to install..."
               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
               export NVM_DIR="$HOME/.nvm" # Re-export after install
-              [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" # Source after install
+              # Re-source NVM script after install
+              [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             fi
 
             # Install and use Node.js
@@ -141,4 +143,5 @@ jobs:
             echo "Building the project..."
             INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }} npm run build
             echo "Deployment completed successfully"
+            set +x # Disable verbose debugging
           ENDSSH
