@@ -92,8 +92,8 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             
             # Install and use Node.js
-            nvm install 20
-            nvm use 20
+            nvm install 18
+            nvm use 18
             
             # Backup existing site data if it exists
             timestamp=$(date +%Y%m%d_%H%M%S)
@@ -131,6 +131,7 @@ jobs:
             
             # Install dependencies and build
             echo "Installing dependencies..."
+            npm cache clean --force
             npm install
             echo "Building the project..."
             INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }} npm run build
