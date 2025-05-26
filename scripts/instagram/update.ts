@@ -18,7 +18,7 @@ async function main() {
         userId: '17841401845000174', // Your Instagram user ID
         accessToken,
         mediaCount: 10,
-        cacheTTL: 3600, // 1 hour cache
+        cacheTTL: 0, // Force fresh fetch
         maxRetries: 3,
         retryDelay: 1000 // Start with 1 second delay, will increase exponentially
     };
