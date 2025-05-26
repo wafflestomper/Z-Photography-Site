@@ -10,10 +10,10 @@ async function downloadImage(url: string, filename: string): Promise<string> {
         if (!response.ok) throw new Error(`Failed to fetch image: ${response.status}`);
         
         const buffer = await response.buffer();
-        const localPath = path.join(process.cwd(), 'public', 'images', 'instagram', filename);
+        const localPath = path.join(process.cwd(), 'images', 'instagram', filename);
         
         // Ensure directory exists
-        await fs.mkdir(path.join(process.cwd(), 'public', 'images', 'instagram'), { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), 'images', 'instagram'), { recursive: true });
         
         await fs.writeFile(localPath, buffer);
         return `/images/instagram/${filename}`;
