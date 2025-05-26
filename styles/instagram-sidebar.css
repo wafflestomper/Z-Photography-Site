@@ -1,0 +1,49 @@
+#instagram-sidebar-gallery {
+    margin-top: 0;
+}
+
+.ig-sidebar-heading {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.ig-follow-btn {
+    display: block;
+    width: 90%;
+    margin: 0 auto 0.75rem auto;
+    background: #0095F6;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.ig-follow-btn:hover {
+    background: #0081D6;
+}
+
+.ig-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+
+.ig-grid-item {
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+}
+
+.ig-grid-item img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    vertical-align: middle;
+} 
