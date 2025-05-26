@@ -6,6 +6,16 @@ import fetch from 'node-fetch';
 
 async function downloadImage(url: string, filename: string): Promise<string> {
     try {
+        // Check if the URL is already a local path
+        if (url.startsWith('/images/instagram/')) {
+            return url;
+        }
+
+        // Ensure URL is absolute
+        if (!url.startsWith('http')) {
+            throw new Error('Invalid URL: must be absolute');
+        }
+
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Failed to fetch image: ${response.status}`);
         
