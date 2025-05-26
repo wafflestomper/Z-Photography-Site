@@ -1,9 +1,27 @@
-import { config } from 'dotenv';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { InstagramConfig, InstagramMedia } from './types';
 import { InstagramService } from './InstagramService';
-import type { InstagramConfig } from './types';
+import fetch from 'node-fetch';
 
-// Load environment variables
-config();
+async function downloadImage(url: string, filename: string): Promise<string> {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to fetch image: ${response.status}`);
+        
+        const buffer = await response.buffer();
+        const localPath = path.join(process.cwd(), 'public', 'images', 'instagram', filename);
+        
+        // Ensure directory exists
+        await fs.mkdir(path.join(process.cwd(), 'public', 'images', 'instagram'), { recursive: true });
+        
+        await fs.writeFile(localPath, buffer);
+        return `/images/instagram/${filename}`;
+    } catch (error) {
+        console.error(`Error downloading image ${url}:`, error);
+        throw error;
+    }
+}
 
 async function main() {
     // Validate environment variables
@@ -15,18 +33,44 @@ async function main() {
 
     // Instagram service configuration
     const instagramConfig: InstagramConfig = {
-        userId: '17841401845000174', // Your Instagram user ID
+        userId: '17841401845000174',
         accessToken,
         mediaCount: 10,
         cacheTTL: 3600, // 1 hour cache
         maxRetries: 3,
-        retryDelay: 1000 // Start with 1 second delay, will increase exponentially
+        retryDelay: 1000
     };
 
     try {
         console.log('Starting Instagram feed update (v2)...');
         const instagram = new InstagramService(instagramConfig);
         const media = await instagram.fetchMedia();
+        
+        // Download all images and update media_url to local path
+        const updatedMedia = await Promise.all(media.map(async (item) => {
+            const filename = `${item.id}.jpg`;
+            try {
+                const localPath = await downloadImage(item.media_url, filename);
+                return {
+                    ...item,
+                    media_url: localPath
+                };
+            } catch (error) {
+                console.error(`Failed to download image for post ${item.id}, using original URL`);
+                return item;
+            }
+        }));
+
+        // Write updated media data to cache
+        const cacheData = {
+            timestamp: Date.now(),
+            data: updatedMedia
+        };
+        
+        await fs.writeFile(
+            path.join(process.cwd(), 'data', 'instagram-v2.json'),
+            JSON.stringify(cacheData, null, 2)
+        );
         
         console.log(`Successfully updated Instagram feed with ${media.length} posts`);
         process.exit(0);
@@ -36,5 +80,4 @@ async function main() {
     }
 }
 
-// Run the update
 main(); 

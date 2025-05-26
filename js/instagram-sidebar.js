@@ -3,12 +3,12 @@ const MEDIA_COUNT = 10;
 
 async function loadInstagramData() {
     try {
-        const response = await fetch('/data/instagram.json');
+        const response = await fetch('/data/instagram-v2.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        return data || [];
+        return data.data || [];
     } catch (error) {
         console.error('Error loading Instagram data:', error);
         throw error;
@@ -23,7 +23,9 @@ function renderInstagramGrid(media) {
     html += '<div class="ig-grid">';
     media.slice(0, MEDIA_COUNT).forEach(item => {
         html += `<a href="${item.permalink}" target="_blank" rel="noopener" class="ig-grid-item">
-            <img src="${item.media_url}" alt="${item.caption || 'Instagram photo'}" loading="lazy" />
+            <img src="${item.media_url}" 
+                 alt="${item.caption || 'Instagram photo'}" 
+                 loading="lazy" />
         </a>`;
     });
     html += '</div>';
@@ -37,6 +39,7 @@ function initInstagramFeed() {
         loadInstagramData()
             .then(renderInstagramGrid)
             .catch(err => {
+                console.error('Instagram feed error:', err);
                 const container = document.getElementById('instagram-sidebar-gallery');
                 if (container) container.innerHTML = '<p>Could not load Instagram feed.</p>';
             });
@@ -83,12 +86,15 @@ function addStyles() {
       margin: 0;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
     }
     .ig-grid-item img {
-      width: 250px;
-      height: auto;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 4px;
       display: block;
       margin: 0;
