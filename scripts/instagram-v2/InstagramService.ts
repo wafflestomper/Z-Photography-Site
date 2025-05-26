@@ -101,14 +101,14 @@ export class InstagramService {
                 console.log('Posts with #zphotography:', filteredCache.length);
                 if (filteredCache.length < this.config.mediaCount) {
                     console.log('Not enough #zphotography posts in cache, fetching fresh data...');
-                    throw new Error('Insufficient tagged posts');
+                } else {
+                    return filteredCache.slice(0, this.config.mediaCount);
                 }
-                return filteredCache.slice(0, this.config.mediaCount);
             }
 
-            console.log('Fetching fresh Instagram data...');
-            // Increase limit to ensure we get enough tagged posts
-            const fetchLimit = this.config.mediaCount * 5; // Increased from 3x to 5x to get more posts
+            // First attempt with 5x posts
+            console.log('Fetching fresh Instagram data (first attempt)...');
+            const fetchLimit = this.config.mediaCount * 5;
             const url = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${fetchLimit}`;
             
             const response = await this.fetchWithRetry(url);
@@ -119,13 +119,10 @@ export class InstagramService {
             const filteredMedia = allMedia.filter(post => this.hasHashtag(post.caption, 'zphotography'));
             console.log('Posts with #zphotography:', filteredMedia.length);
             
-            // Take only the required number of posts
-            const media = filteredMedia.slice(0, this.config.mediaCount);
-            
-            // If we don't have enough posts, try fetching with an even larger limit
-            if (media.length < this.config.mediaCount) {
+            // If we don't have enough posts, try with a larger limit
+            if (filteredMedia.length < this.config.mediaCount) {
                 console.log('Not enough #zphotography posts, trying with larger limit...');
-                const largerLimit = this.config.mediaCount * 10; // Try with 10x if first attempt fails
+                const largerLimit = this.config.mediaCount * 10;
                 const newUrl = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${largerLimit}`;
                 
                 const newResponse = await this.fetchWithRetry(newUrl);
@@ -135,30 +132,32 @@ export class InstagramService {
                 const newFilteredMedia = newAllMedia.filter(post => this.hasHashtag(post.caption, 'zphotography'));
                 console.log('Posts with #zphotography (second attempt):', newFilteredMedia.length);
                 
-                const newMedia = newFilteredMedia.slice(0, this.config.mediaCount);
-                if (newMedia.length >= this.config.mediaCount) {
-                    await this.writeCache(newMedia);
-                    return newMedia;
-                }
+                // Use the results from the second attempt
+                const media = newFilteredMedia.slice(0, this.config.mediaCount);
+                await this.writeCache(media);
+                return media;
             }
             
-            // Cache the filtered data
+            // Use results from first attempt if we have enough
+            const media = filteredMedia.slice(0, this.config.mediaCount);
             await this.writeCache(media);
-            
             return media;
+
         } catch (error) {
             console.error('Error fetching Instagram media:', error);
             
-            // If cache exists but expired, use it as fallback
+            // Only use cache as fallback if we have enough posts
             if (cache) {
                 console.log('Using expired cache as fallback');
                 console.log('Total posts in expired cache:', cache.data.length);
                 const filteredCache = cache.data.filter(post => this.hasHashtag(post.caption, 'zphotography'));
                 console.log('Posts with #zphotography in expired cache:', filteredCache.length);
-                return filteredCache.slice(0, this.config.mediaCount);
+                if (filteredCache.length >= this.config.mediaCount) {
+                    return filteredCache.slice(0, this.config.mediaCount);
+                }
             }
             
-            throw error;
+            throw new Error('Failed to fetch enough #zphotography posts and no valid cache available');
         }
     }
 } 
