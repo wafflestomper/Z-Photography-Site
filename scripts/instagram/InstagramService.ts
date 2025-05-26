@@ -10,7 +10,7 @@ export class InstagramService {
 
     constructor(config: InstagramConfig) {
         this.config = config;
-        this.cacheFile = path.join(process.cwd(), 'data', 'instagram.json');
+        this.cacheFile = path.join(process.cwd(), 'data', 'instagram-v2.json');
     }
 
     private async delay(ms: number): Promise<void> {
@@ -45,6 +45,32 @@ export class InstagramService {
                 await this.delay(this.config.retryDelay * Math.pow(2, retries));
                 return this.fetchWithRetry(url, retries + 1);
             }
+            throw error;
+        }
+    }
+
+    private async downloadImage(imageUrl: string, id: string): Promise<string> {
+        try {
+            await this.enforceRateLimit();
+            
+            const response = await fetch(imageUrl);
+            if (!response.ok) {
+                throw new Error(`Failed to download image: ${response.status}`);
+            }
+
+            const buffer = await response.arrayBuffer();
+            const imagePath = path.join(process.cwd(), 'images', 'instagram', `${id}.jpg`);
+            
+            // Ensure the directory exists
+            await fs.mkdir(path.dirname(imagePath), { recursive: true });
+            
+            // Write the image file
+            await fs.writeFile(imagePath, Buffer.from(buffer));
+            
+            // Return the relative path for storage in JSON
+            return `/images/instagram/${id}.jpg`;
+        } catch (error) {
+            console.error(`Error downloading image ${id}:`, error);
             throw error;
         }
     }
@@ -89,10 +115,25 @@ export class InstagramService {
             const response = await this.fetchWithRetry(url);
             const media = response.data || [];
             
-            // Cache the new data
-            await this.writeCache(media);
+            // Download images and update media_url to local paths
+            console.log('Downloading images...');
+            const updatedMedia = await Promise.all(media.map(async (post) => {
+                if (post.media_url) {
+                    try {
+                        const localPath = await this.downloadImage(post.media_url, post.id);
+                        return { ...post, media_url: localPath };
+                    } catch (error) {
+                        console.error(`Failed to download image for post ${post.id}:`, error);
+                        return post;
+                    }
+                }
+                return post;
+            }));
             
-            return media;
+            // Cache the new data
+            await this.writeCache(updatedMedia);
+            
+            return updatedMedia;
         } catch (error) {
             console.error('Error fetching Instagram media:', error);
             
