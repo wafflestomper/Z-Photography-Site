@@ -75,10 +75,18 @@ export class InstagramService {
     }
 
     private hasHashtag(caption: string | null, targetHashtag: string): boolean {
-        if (!caption) return false;
+        if (!caption) {
+            console.log('No caption found for post');
+            return false;
+        }
         const normalizedCaption = caption.toLowerCase();
         const normalizedHashtag = targetHashtag.toLowerCase().replace('#', '');
-        return normalizedCaption.includes(`#${normalizedHashtag}`);
+        const hasTag = normalizedCaption.includes(`#${normalizedHashtag}`);
+        console.log(`Checking caption for #${normalizedHashtag}:`, {
+            caption: normalizedCaption,
+            hasTag
+        });
+        return hasTag;
     }
 
     async fetchMedia(): Promise<InstagramMedia[]> {
@@ -88,7 +96,9 @@ export class InstagramService {
             cache = await this.readCache();
             if (cache && this.isCacheValid(cache)) {
                 console.log('Using cached Instagram data');
+                console.log('Total posts before filtering:', cache.data.length);
                 const filteredCache = cache.data.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+                console.log('Posts with #zphotography:', filteredCache.length);
                 return filteredCache.slice(0, this.config.mediaCount);
             }
 
@@ -99,9 +109,11 @@ export class InstagramService {
             
             const response = await this.fetchWithRetry(url);
             const allMedia = response.data || [];
+            console.log('Total posts fetched:', allMedia.length);
             
             // Filter posts with the zphotography hashtag
             const filteredMedia = allMedia.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+            console.log('Posts with #zphotography:', filteredMedia.length);
             
             // Take only the required number of posts
             const media = filteredMedia.slice(0, this.config.mediaCount);
@@ -116,7 +128,9 @@ export class InstagramService {
             // If cache exists but expired, use it as fallback
             if (cache) {
                 console.log('Using expired cache as fallback');
+                console.log('Total posts in expired cache:', cache.data.length);
                 const filteredCache = cache.data.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+                console.log('Posts with #zphotography in expired cache:', filteredCache.length);
                 return filteredCache.slice(0, this.config.mediaCount);
             }
             
