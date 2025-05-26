@@ -9,9 +9,13 @@ on:
 jobs:
   update-instagram:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Gives permission to push changes
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # Use the automatic GitHub token
       
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -32,7 +36,7 @@ jobs:
       
       - name: Commit and push if changed
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/instagram-v2.json
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update Instagram feed" && git push) 
