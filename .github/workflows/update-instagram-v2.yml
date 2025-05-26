@@ -32,7 +32,13 @@ jobs:
       - name: Update Instagram feed
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
-        run: npm run update-instagram:v2
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Directory contents before update:"
+          ls -la images/instagram/
+          npm run update-instagram:v2
+          echo "Directory contents after update:"
+          ls -la images/instagram/
       
       - name: Commit and push if changed
         run: |
@@ -52,13 +58,22 @@ jobs:
           DREAMHOST_USERNAME: ${{ secrets.DREAMHOST_USERNAME }}
         run: |
           # Create the remote directory structure
+          echo "Creating remote directory structure..."
           ssh -o StrictHostKeyChecking=no $DREAMHOST_USERNAME@$DREAMHOST_HOST "mkdir -p /home/brizol/z-photography.com/images/instagram"
           
-          # Deploy the updated files
+          echo "Local directory contents:"
+          ls -la images/instagram/
+          
+          # Deploy the updated files with verbose logging
+          echo "Deploying data/instagram-v2.json..."
           rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
             data/instagram-v2.json \
             $DREAMHOST_USERNAME@$DREAMHOST_HOST:/home/brizol/z-photography.com/data/
           
+          echo "Deploying images/instagram/..."
           rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
-            images/instagram/ \
-            $DREAMHOST_USERNAME@$DREAMHOST_HOST:/home/brizol/z-photography.com/images/instagram/ 
+            images/instagram/* \
+            $DREAMHOST_USERNAME@$DREAMHOST_HOST:/home/brizol/z-photography.com/images/instagram/
+          
+          echo "Verifying remote files..."
+          ssh -o StrictHostKeyChecking=no $DREAMHOST_USERNAME@$DREAMHOST_HOST "ls -la /home/brizol/z-photography.com/images/instagram/" 
