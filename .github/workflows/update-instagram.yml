@@ -138,7 +138,6 @@ jobs:
             
             # Install dependencies and build
             echo "Installing dependencies..."
-            npm cache clean --force
             npm ci
             echo "Building the project..."
             INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }} npm run build
