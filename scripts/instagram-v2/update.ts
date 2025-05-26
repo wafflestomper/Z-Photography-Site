@@ -4,6 +4,23 @@ import { InstagramConfig, InstagramMedia } from './types';
 import { InstagramService } from './InstagramService';
 import fetch from 'node-fetch';
 
+async function cleanupOldImages(keepImageIds: string[]) {
+    const imageDir = path.join(process.cwd(), 'images', 'instagram');
+    try {
+        const files = await fs.readdir(imageDir);
+        for (const file of files) {
+            if (file === '.gitkeep') continue;
+            const imageId = file.replace('.jpg', '');
+            if (!keepImageIds.includes(imageId)) {
+                console.log(`Removing old image: ${file}`);
+                await fs.unlink(path.join(imageDir, file));
+            }
+        }
+    } catch (error) {
+        console.error('Error cleaning up old images:', error);
+    }
+}
+
 async function downloadImage(url: string, filename: string): Promise<string> {
     try {
         // Check if the URL is already a local path
@@ -70,6 +87,9 @@ async function main() {
                 return item;
             }
         }));
+
+        // Clean up old images that are no longer needed
+        await cleanupOldImages(media.map(item => item.id));
 
         // Write updated media data to cache
         const cacheData = {

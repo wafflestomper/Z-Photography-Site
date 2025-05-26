@@ -104,7 +104,7 @@ export class InstagramService {
 
             console.log('Fetching fresh Instagram data...');
             // Increase limit to ensure we get enough tagged posts
-            const fetchLimit = this.config.mediaCount * 3;
+            const fetchLimit = this.config.mediaCount * 3; // Fetch more posts to ensure we have enough after filtering
             const url = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${fetchLimit}`;
             
             const response = await this.fetchWithRetry(url);
