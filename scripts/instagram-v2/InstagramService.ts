@@ -74,6 +74,13 @@ export class InstagramService {
         return cacheAge < this.config.cacheTTL * 1000;
     }
 
+    private hasHashtag(caption: string | null, targetHashtag: string): boolean {
+        if (!caption) return false;
+        const normalizedCaption = caption.toLowerCase();
+        const normalizedHashtag = targetHashtag.toLowerCase().replace('#', '');
+        return normalizedCaption.includes(`#${normalizedHashtag}`);
+    }
+
     async fetchMedia(): Promise<InstagramMedia[]> {
         let cache: CachedData | null = null;
         try {
@@ -81,16 +88,25 @@ export class InstagramService {
             cache = await this.readCache();
             if (cache && this.isCacheValid(cache)) {
                 console.log('Using cached Instagram data');
-                return cache.data;
+                const filteredCache = cache.data.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+                return filteredCache.slice(0, this.config.mediaCount);
             }
 
             console.log('Fetching fresh Instagram data...');
-            const url = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${this.config.mediaCount}`;
+            // Increase limit to ensure we get enough tagged posts
+            const fetchLimit = this.config.mediaCount * 3;
+            const url = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${fetchLimit}`;
             
             const response = await this.fetchWithRetry(url);
-            const media = response.data || [];
+            const allMedia = response.data || [];
             
-            // Cache the new data
+            // Filter posts with the zphotography hashtag
+            const filteredMedia = allMedia.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+            
+            // Take only the required number of posts
+            const media = filteredMedia.slice(0, this.config.mediaCount);
+            
+            // Cache the filtered data
             await this.writeCache(media);
             
             return media;
@@ -100,7 +116,8 @@ export class InstagramService {
             // If cache exists but expired, use it as fallback
             if (cache) {
                 console.log('Using expired cache as fallback');
-                return cache.data;
+                const filteredCache = cache.data.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+                return filteredCache.slice(0, this.config.mediaCount);
             }
             
             throw error;
