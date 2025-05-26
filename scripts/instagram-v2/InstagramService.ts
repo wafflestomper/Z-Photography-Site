@@ -99,12 +99,16 @@ export class InstagramService {
                 console.log('Total posts before filtering:', cache.data.length);
                 const filteredCache = cache.data.filter(post => this.hasHashtag(post.caption, 'zphotography'));
                 console.log('Posts with #zphotography:', filteredCache.length);
+                if (filteredCache.length < this.config.mediaCount) {
+                    console.log('Not enough #zphotography posts in cache, fetching fresh data...');
+                    throw new Error('Insufficient tagged posts');
+                }
                 return filteredCache.slice(0, this.config.mediaCount);
             }
 
             console.log('Fetching fresh Instagram data...');
             // Increase limit to ensure we get enough tagged posts
-            const fetchLimit = this.config.mediaCount * 3; // Fetch more posts to ensure we have enough after filtering
+            const fetchLimit = this.config.mediaCount * 5; // Increased from 3x to 5x to get more posts
             const url = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${fetchLimit}`;
             
             const response = await this.fetchWithRetry(url);
@@ -117,6 +121,26 @@ export class InstagramService {
             
             // Take only the required number of posts
             const media = filteredMedia.slice(0, this.config.mediaCount);
+            
+            // If we don't have enough posts, try fetching with an even larger limit
+            if (media.length < this.config.mediaCount) {
+                console.log('Not enough #zphotography posts, trying with larger limit...');
+                const largerLimit = this.config.mediaCount * 10; // Try with 10x if first attempt fails
+                const newUrl = `https://graph.facebook.com/v22.0/${this.config.userId}/media?fields=id,caption,media_url,permalink,thumbnail_url,timestamp&access_token=${this.config.accessToken}&limit=${largerLimit}`;
+                
+                const newResponse = await this.fetchWithRetry(newUrl);
+                const newAllMedia = newResponse.data || [];
+                console.log('Total posts fetched (second attempt):', newAllMedia.length);
+                
+                const newFilteredMedia = newAllMedia.filter(post => this.hasHashtag(post.caption, 'zphotography'));
+                console.log('Posts with #zphotography (second attempt):', newFilteredMedia.length);
+                
+                const newMedia = newFilteredMedia.slice(0, this.config.mediaCount);
+                if (newMedia.length >= this.config.mediaCount) {
+                    await this.writeCache(newMedia);
+                    return newMedia;
+                }
+            }
             
             // Cache the filtered data
             await this.writeCache(media);
