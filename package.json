@@ -7,7 +7,7 @@
     "build": "node scripts/build-instagram.js",
     "update-instagram": "node scripts/update-instagram.js",
     "build:v2": "tsc",
-    "update-instagram:v2": "npm run build:v2 && node dist/scripts/instagram-v2/update.js",
+    "update-instagram:v2": "npm run build:v2 && node dist/scripts/instagram/update.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
