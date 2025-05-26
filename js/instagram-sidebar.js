@@ -109,15 +109,12 @@ function addStyles() {
       margin: 0;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       width: 250px;
-      height: 250px;
-      overflow: hidden;
     }
     .ig-grid-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       border-radius: 4px;
       display: block;
       margin: 0;
