@@ -1,5 +1,5 @@
 .hero-carousel {
-    margin-top: 70px; /* Space for fixed navigation */
+    margin-top: 105px; /* Increased space for fixed navigation */
     position: relative;
     width: 100%;
     overflow: hidden; /* Contain the sliding content */
@@ -34,34 +34,46 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 40px; /* Increased gap between arrows */
-    padding: 10px 0; /* Reduced padding */
-    margin-top: -10px; /* Pull arrows up slightly */
+    padding: 4px 0;
+    margin-top: -4px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    height: 32px; /* Fixed height for better centering */
 }
 
 .carousel-arrow {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 24px;
-    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
     transition: all var(--transition-speed);
-    padding: 5px 10px;
+    padding: 0 15px;
+    outline: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transform: translateY(-4px);
 }
 
 .carousel-arrow:hover {
-    color: var(--accent-color);
+    color: #0596f7;
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
     .hero-carousel {
-        margin-top: 60px;
+        margin-top: 95px;
     }
 
     .carousel-controls {
-        padding: 8px 0;
+        padding: 3px 0;
         gap: 30px; /* Slightly smaller gap on mobile */
-        margin-top: -8px;
+        height: 28px; /* Slightly smaller height for mobile */
     }
 } 
