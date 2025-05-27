@@ -223,7 +223,7 @@ class Carousel {
         if (useTransition) {
             // Set transition before the transform
             requestAnimationFrame(() => {
-                this.container.style.transition = 'transform 0.5s ease-in-out';
+                this.container.style.transition = 'transform 1s ease-in-out';
                 requestAnimationFrame(() => {
                     this.moveToPosition();
                 });
