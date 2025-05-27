@@ -1,0 +1,67 @@
+.hero-carousel {
+    margin-top: 70px; /* Space for fixed navigation */
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Contain the sliding content */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero-carousel.loaded {
+    opacity: 1; /* Show when loaded */
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 500px;
+    align-items: center;
+}
+
+.carousel-image {
+    height: 500px;
+    width: auto;
+    flex: 0 0 auto;
+    display: block;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Controls Container */
+.carousel-controls {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Increased gap between arrows */
+    padding: 10px 0; /* Reduced padding */
+    margin-top: -10px; /* Pull arrows up slightly */
+}
+
+.carousel-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--text-color);
+    transition: all var(--transition-speed);
+    padding: 5px 10px;
+}
+
+.carousel-arrow:hover {
+    color: var(--accent-color);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hero-carousel {
+        margin-top: 60px;
+    }
+
+    .carousel-controls {
+        padding: 8px 0;
+        gap: 30px; /* Slightly smaller gap on mobile */
+        margin-top: -8px;
+    }
+} 
