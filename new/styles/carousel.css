@@ -1,0 +1,79 @@
+.hero-carousel {
+    margin-top: 105px; /* Increased space for fixed navigation */
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Contain the sliding content */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero-carousel.loaded {
+    opacity: 1; /* Show when loaded */
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 500px;
+    align-items: center;
+}
+
+.carousel-image {
+    height: 500px;
+    width: auto;
+    flex: 0 0 auto;
+    display: block;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Controls Container */
+.carousel-controls {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Increased gap between arrows */
+    padding: 4px 0;
+    margin-top: -4px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    height: 32px; /* Fixed height for better centering */
+}
+
+.carousel-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
+    transition: all var(--transition-speed);
+    padding: 0 15px;
+    outline: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transform: translateY(-4px);
+}
+
+.carousel-arrow:hover {
+    color: #0596f7;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hero-carousel {
+        margin-top: 95px;
+    }
+
+    .carousel-controls {
+        padding: 3px 0;
+        gap: 30px; /* Slightly smaller gap on mobile */
+        height: 28px; /* Slightly smaller height for mobile */
+    }
+} 
