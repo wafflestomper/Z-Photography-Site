@@ -14,12 +14,12 @@
 
 /* Tiny Slider Customization */
 .my-slider {
-    height: 500px;
+    height: 600px; /* Updated height */
 }
 
 .tns-outer {
     position: relative;
-    height: 500px;
+    height: 600px; /* Updated height */
 }
 
 .tns-inner {
