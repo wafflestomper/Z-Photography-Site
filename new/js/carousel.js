@@ -138,9 +138,9 @@ class Carousel {
                     const img = document.createElement('img');
                     img.onload = () => {
                         const aspectRatio = img.naturalWidth / img.naturalHeight;
-                        const width = Math.round(500 * aspectRatio);
+                        const width = Math.round(600 * aspectRatio);
                         img.style.width = `${width}px`;
-                        img.style.height = '500px';
+                        img.style.height = '600px';
                         resolve(img);
                     };
                     img.onerror = () => { console.error('Failed to load image:', photo.src); resolve(null); };
