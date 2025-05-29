@@ -2,45 +2,62 @@
     margin-top: 105px; /* Increased space for fixed navigation */
     position: relative;
     width: 100%;
-    overflow: hidden; /* Contain the sliding content */
+    overflow: visible;
     opacity: 0; /* Start hidden */
     transition: opacity 0.5s ease-in-out;
+    padding-bottom: 32px; /* Reduced padding */
 }
 
 .hero-carousel.loaded {
     opacity: 1; /* Show when loaded */
 }
 
-.carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+/* Tiny Slider Customization */
+.my-slider {
     height: 500px;
+}
+
+.tns-outer {
+    position: relative;
+    height: 500px;
+}
+
+.tns-inner {
+    height: 100%;
+}
+
+.tns-slider {
+    height: 100%;
+    display: flex !important;
     align-items: center;
 }
 
-.carousel-image {
-    height: 500px;
-    width: auto;
-    flex: 0 0 auto;
-    display: block;
-    object-fit: contain;
-    margin: 0;
-    padding: 0;
+/* Default style for all slide items (img.tns-item) */
+img.tns-item {
+    /* background-color: #000; Removed, as it doesn't help with img opacity tint */
+    opacity: 1; /* Images are fully opaque by default */
+    filter: brightness(1); /* Default to full brightness */
+    transition: filter 0s ease-in-out; /* Instant filter change, matching user opacity preference */
+    /* Other styles like width/height are handled by TinySlider or inline */
 }
 
-/* Navigation Controls Container */
+/* Remove any specific .tns-slide-active opacity/filter rules from CSS here */
+
+/* Navigation Controls */
 .carousel-controls {
-    position: relative;
+    position: absolute;
+    bottom: -4px; /* Moved up closer to images */
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px; /* Increased gap between arrows */
+    gap: 40px;
     padding: 4px 0;
-    margin-top: -4px;
     background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
-    height: 32px; /* Fixed height for better centering */
+    height: 32px;
+    z-index: 10;
 }
 
 .carousel-arrow {
@@ -59,21 +76,17 @@
     justify-content: center;
     height: 100%;
     transform: translateY(-4px);
+    z-index: 2;
 }
 
 .carousel-arrow:hover {
-    color: #0596f7;
+    color: var(--accent-color);
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
     .hero-carousel {
         margin-top: 95px;
-    }
-
-    .carousel-controls {
-        padding: 3px 0;
-        gap: 30px; /* Slightly smaller gap on mobile */
-        height: 28px; /* Slightly smaller height for mobile */
+        display: none; /* Hide on mobile as we'll use the existing mobile implementation */
     }
 } 
