@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/carousel.css">
+    <link rel="stylesheet" href="styles/about-teaser.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +63,50 @@
         "telephone": "",
         "priceRange": "$$",
         "areaServed": "Richmond Metropolitan Area"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Brian Zollinhofer",
+      "jobTitle": "Sports Photographer",
+      "description": "Middle school teacher and sports photographer specializing in Richmond private school athletics",
+      "url": "https://z-photography.com",
+      "sameAs": [
+        "https://www.instagram.com/brianzollinhofer",
+        "https://www.facebook.com/profile.php?id=61575884174439"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Richmond",
+        "addressRegion": "VA",
+        "addressCountry": "US"
+      },
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Sports Photographer",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Richmond, VA"
+        }
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Z Photography",
+      "description": "Sports photography for Richmond private schools and student athletes",
+      "provider": {
+        "@type": "Person",
+        "name": "Brian Zollinhofer"
+      },
+      "areaServed": "Richmond, VA",
+      "serviceType": "Sports Photography"
     }
     </script>
 </head>
@@ -94,6 +139,19 @@
             <div class="carousel-controls">
                 <button class="carousel-arrow prev" aria-label="Previous image">⟵</button>
                 <button class="carousel-arrow next" aria-label="Next image">⟶</button>
+            </div>
+        </section>
+
+        <!-- About Me Teaser -->
+        <section id="about-teaser" class="about-teaser-section">
+            <div class="section-container about-teaser-content">
+                <div class="about-teaser-image">
+                    <img src="/new/images/st-christophers-8th-grade-graduation-photographer.jpg" alt="Brian Zollinhofer - Z Photography">
+                </div>
+                <div class="about-teaser-text">
+                    <h2>About Brian Zollinhofer</h2>
+                    <p>As both a middle school teacher and former collegiate athlete, I understand what makes young competitors tick. My 20+ years in education and athletics help me anticipate the character-defining moments that parents and schools want preserved: the celebration after a hard-fought goal, the focus before a crucial play, the teammates supporting each other. Richmond's premier schools trust Z Photography to capture their students' athletic stories with authenticity and heart.</p>
+                </div>
             </div>
         </section>
 

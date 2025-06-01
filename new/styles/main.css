@@ -12,16 +12,15 @@
 html, body {
     margin: 0;
     padding: 0;
-    overscroll-behavior: none;
+    /* Adjusted overscroll-behavior to allow pull-to-refresh */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html {
+    overscroll-behavior-y: auto; /* Allow default y-axis overscroll (e.g., pull-to-refresh) */
 }
 
 body {
+    overscroll-behavior-y: contain; /* Prevent scroll chaining from body if it becomes scrollable */
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
