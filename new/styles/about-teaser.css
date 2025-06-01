@@ -1,0 +1,67 @@
+.about-teaser-section {
+    padding: 10px 0 40px 0; /* Removed top padding, kept bottom padding at 40px */
+    background-color: #f9f9f9; /* Light grey background for the section */
+}
+
+.about-teaser-content {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    gap: 30px; /* Space between image and text */
+}
+
+.about-teaser-image { /* Add a wrapper for the image if needed for positioning */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.about-teaser-image img {
+    width: 40vw; /* Make image larger, closer to 1/2 screen width */
+    max-width: 480px; /* Adjust max width accordingly */
+    height: auto;
+    border-radius: 8px; /* Optional: adds rounded corners to the image */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow */
+}
+
+.about-teaser-text {
+    flex: 1; /* Allows the text to take up remaining space */
+}
+
+.about-teaser-text h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.about-teaser-text p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Adjust padding for this specific section's container */
+.about-teaser-section .section-container {
+    padding-left: 0.5rem; /* Reduce left padding */
+    padding-right: 1.5rem; /* Keep right padding standard or adjust as needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-teaser-content {
+        flex-direction: column; /* Stack image and text vertically on smaller screens */
+        align-items: center; /* Center items when stacked */
+        text-align: center; /* Center-align text for a better look on mobile */
+    }
+
+    .about-teaser-image img {
+        width: 80%; /* On smaller screens, take 80% of its container */
+        /* The max-width: 350px from the desktop style will still apply here */
+        margin-bottom: 20px; /* Add space below image when stacked */
+    }
+
+    .about-teaser-text h2 {
+        font-size: 1.8em;
+    }
+
+    .about-teaser-text p {
+        font-size: 1em;
+    }
+} 
