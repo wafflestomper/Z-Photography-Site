@@ -55,7 +55,7 @@ img.tns-item {
     align-items: center;
     gap: 40px;
     padding: 4px 0;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: #f9f9f9; /* Changed background color */
     height: 32px;
     z-index: 10;
 }
