@@ -155,6 +155,87 @@
             </div>
         </section>
 
+        <!-- Take Your Shot Section -->
+        <section id="take-your-shot" class="take-your-shot-section">
+            <div class="section-container">
+                <h2>Take Your Shot</h2>
+                <div class="sports-grid">
+                    <a href="/new/sports/baseball.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Baseball" class="swap-on-hover">
+                        </div>
+                        <span>Baseball</span>
+                    </a>
+                    <a href="/new/sports/basketball.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Basketball" class="swap-on-hover">
+                        </div>
+                        <span>Basketball</span>
+                    </a>
+                    <a href="/new/sports/football.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Football" class="swap-on-hover">
+                        </div>
+                        <span>Football</span>
+                    </a>
+                    <a href="/new/sports/futsal.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Futsal" class="swap-on-hover">
+                        </div>
+                        <span>Futsal</span>
+                    </a>
+                    <a href="/new/sports/indoor-track.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Indoor Track" class="swap-on-hover">
+                        </div>
+                        <span>Indoor Track</span>
+                    </a>
+                    <a href="/new/sports/lacrosse.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Lacrosse" class="swap-on-hover">
+                        </div>
+                        <span>Lacrosse</span>
+                    </a>
+                    <a href="/new/sports/rugby.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Rugby" class="swap-on-hover">
+                        </div>
+                        <span>Rugby</span>
+                    </a>
+                    <a href="/new/sports/soccer.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Soccer" class="swap-on-hover">
+                        </div>
+                        <span>Soccer</span>
+                    </a>
+                    <a href="/new/sports/squash.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Squash" class="swap-on-hover">
+                        </div>
+                        <span>Squash</span>
+                    </a>
+                    <a href="/new/sports/tennis.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Tennis" class="swap-on-hover">
+                        </div>
+                        <span>Tennis</span>
+                    </a>
+                    <a href="/new/sports/track-and-field.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Track & Field" class="swap-on-hover">
+                        </div>
+                        <span>Track & Field</span>
+                    </a>
+                    <a href="/new/sports/wrestling.html" class="sport-card">
+                        <div class="sport-image">
+                            <img src="/new/images/placeholder-bw.png" data-hover="/new/images/placeholder-color.png" alt="Wrestling" class="swap-on-hover">
+                        </div>
+                        <span>Wrestling</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Services Overview -->
         <section id="services" class="services-overview">
             <div class="section-container">
@@ -190,5 +271,14 @@
     <script src="js/navigation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
     <script src="js/carousel.js"></script>
+    <script>
+      // Image swap on hover for Take Your Shot section
+      document.querySelectorAll('.swap-on-hover').forEach(img => {
+        const original = img.src;
+        const hover = img.getAttribute('data-hover');
+        img.addEventListener('mouseenter', () => { img.src = hover; });
+        img.addEventListener('mouseleave', () => { img.src = original; });
+      });
+    </script>
 </body>
 </html> 

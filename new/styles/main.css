@@ -102,6 +102,80 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.5rem;
 }
 
+/* Take Your Shot Section */
+.take-your-shot-section {
+    background: #181a1b;
+    color: #fff;
+    padding: var(--section-spacing) 0;
+}
+.take-your-shot-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: #fff;
+}
+.sports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+}
+.sport-card {
+    background: #232526;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    padding: 1.5rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.sport-card:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+}
+.sport-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sport-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s, opacity 0.3s;
+    display: block;
+}
+.sport-card span {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .take-your-shot-section {
+        padding: 2.5rem 0;
+    }
+    .sports-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+    .sport-image {
+        width: 70px;
+        height: 70px;
+    }
+    .sport-card span {
+        font-size: 1rem;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     :root {

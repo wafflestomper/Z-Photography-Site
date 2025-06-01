@@ -1,0 +1,68 @@
+body {
+    background: #181a1b;
+    color: #fff;
+}
+.sport-hero.dark {
+    background: #232526;
+    padding: 8rem 0 2rem 0;
+    text-align: center;
+}
+.sport-hero.dark h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin: 0;
+}
+.sport-gallery, .sport-pricing, .sport-contact {
+    max-width: 700px;
+    margin: 2.5rem auto;
+    background: #232526;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+.sport-gallery h2, .sport-pricing h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.gallery-placeholder, .pricing-placeholder {
+    color: #bbb;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+.sport-contact {
+    text-align: center;
+    background: none;
+    box-shadow: none;
+    padding: 1.5rem 0 2.5rem 0;
+}
+.cta-button {
+    background: #2c5282;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: inline-block;
+}
+.cta-button:hover {
+    background: #4890f7;
+    color: #fff;
+}
+@media (max-width: 600px) {
+    .sport-hero.dark {
+        padding: 6rem 0 1.2rem 0;
+    }
+    .sport-gallery, .sport-pricing {
+        padding: 1.2rem 0.5rem;
+    }
+    .sport-hero.dark h1 {
+        font-size: 1.5rem;
+    }
+} 
