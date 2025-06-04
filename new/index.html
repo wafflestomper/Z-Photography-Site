@@ -34,7 +34,9 @@
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/carousel.css">
     <link rel="stylesheet" href="styles/about-teaser.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -109,6 +111,9 @@
       "serviceType": "Sports Photography"
     }
     </script>
+
+    <!-- Add footer.js -->
+    <script src="/new/js/footer.js"></script>
 </head>
 <body>
     <!-- Top Navigation -->
@@ -236,37 +241,66 @@
             </div>
         </section>
 
-        <!-- Services Overview -->
-        <section id="services" class="services-overview">
+        <!-- Beyond the Game Section -->
+        <section id="beyond-the-game" class="services-overview">
             <div class="section-container">
-                <h2>Professional Sports Photography in Richmond, VA</h2>
+                <h2>Beyond the Game</h2>
                 <div class="services-grid">
                     <article class="service-card">
-                        <h3>Sports Events</h3>
-                        <p>Capturing the intensity and emotion of live sporting events with professional precision.</p>
+                        <h3>Events</h3>
+                        <p>Capturing the special moments and celebrations that make your events memorable.</p>
                     </article>
                     <article class="service-card">
-                        <h3>Team Photos</h3>
-                        <p>Professional team photography services for schools, leagues, and sports organizations.</p>
+                        <h3>Portraits</h3>
+                        <p>Professional portrait photography that captures your unique personality and style.</p>
                     </article>
-                    <article class="service-card">
-                        <h3>Action Shots</h3>
-                        <p>Dynamic action photography that freezes the perfect moment in any sport.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Preview -->
-        <section id="portfolio" class="portfolio-preview">
-            <div class="section-container">
-                <h2>Featured Work</h2>
-                <div class="portfolio-grid">
-                    <!-- Portfolio images will be loaded dynamically -->
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PhotographyBusiness",
+        "name": "Z Photography",
+        "image": "https://z-photography.com/new/images/z-photography-logo-blue.png",
+        "url": "https://z-photography.com",
+        "telephone": "+18049213855",
+        "email": "brian@z-photography.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Richmond",
+            "addressRegion": "VA",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "37.5407",
+            "longitude": "-77.4360"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "17:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "17:00"
+            }
+        ],
+        "priceRange": "$$",
+        "sameAs": [
+            "https://www.instagram.com/zphotography",
+            "https://www.facebook.com/zphotography"
+        ]
+    }
+    </script>
 
     <script src="js/navigation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
@@ -279,6 +313,9 @@
         img.addEventListener('mouseenter', () => { img.src = hover; });
         img.addEventListener('mouseleave', () => { img.src = original; });
       });
+
+      // Update copyright year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html> 
