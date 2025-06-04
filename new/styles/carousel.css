@@ -1,5 +1,5 @@
 .hero-carousel {
-    margin-top: 105px; /* Increased space for fixed navigation */
+    margin-top: 0; /* Removed extra margin since main has padding-top */
     position: relative;
     width: 100%;
     overflow: visible;
@@ -86,7 +86,7 @@ img.tns-item {
 /* Mobile Styles */
 @media (max-width: 768px) {
     .hero-carousel {
-        margin-top: 95px;
+        margin-top: 0;
         display: none; /* Hide on mobile as we'll use the existing mobile implementation */
     }
 } 
