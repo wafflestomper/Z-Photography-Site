@@ -119,9 +119,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 .take-your-shot-section h2 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-size: 2.5rem;
     color: #fff;
+}
+.section-subtitle {
+    text-align: center;
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Open Sans', sans-serif;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
 }
 .sports-grid {
     display: grid;
@@ -359,6 +370,27 @@ address p {
   letter-spacing: 0.5px;
   padding: 0;
   border-right: 1px solid #222;
+}
+
+.accordion-card::after {
+  content: attr(data-sport);
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.accordion-card:hover::after,
+.accordion-card:focus::after,
+.accordion-card.active::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .accordion-card[data-href="/new/sports/baseball.html"] {
