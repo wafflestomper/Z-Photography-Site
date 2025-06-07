@@ -119,15 +119,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 .take-your-shot-section h2 {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     font-size: 2.5rem;
     color: #fff;
 }
+.take-your-shot-section .section-subtitle {
+    color: #fff;
+    margin-bottom: 2.5rem;
+    max-width: 60vw;
+    width: 60vw;
+}
 .section-subtitle {
     text-align: center;
-    color: #ccc;
+    color: #444;
     font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
     font-family: 'Open Sans', sans-serif;
     max-width: 600px;
     margin-left: auto;
@@ -384,6 +391,9 @@ address p {
   transition: all 0.3s ease;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   z-index: 2;
+  background: rgba(0,0,0,0.5);
+  padding: 0.5em 1em;
+  border-radius: 8px;
 }
 
 .accordion-card:hover::after,
@@ -819,4 +829,58 @@ address p {
    * 4. Use different visual treatment for mobile
    * To be addressed once all sport images are implemented
    */
+}
+
+#beyond-the-game h2 {
+    margin-top: -40px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+}
+
+#beyond-the-game .section-subtitle {
+    max-width: 60vw;
+    width: 60vw;
+}
+
+.seo-h1 {
+  color: #000;
+  font-size: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.01;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+#take-your-shot h3 {
+    text-align: center;
+    color: #bbb;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.about-teaser-text h2 {
+    margin-bottom: 0;
+}
+
+.about-teaser-text h3 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.capture-h3,
+.about-teaser-text h3 {
+    color: #555;
+    margin-top: 0;
+}
+
+.capture-h3 {
+    color: #555 !important;
+    text-align: center;
+    margin-top: 0;
 } 
