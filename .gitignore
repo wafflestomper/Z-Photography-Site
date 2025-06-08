@@ -9,4 +9,6 @@ data/*
 
 # SSH keys
 *_rsa
-*_rsa.pub 
+*_rsa.pub
+
+menu-layout.psd 
