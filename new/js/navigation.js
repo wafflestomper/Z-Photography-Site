@@ -24,15 +24,17 @@ const initNavigation = () => {
     });
 
     // Handle all navigation links
-    document.querySelectorAll('.nav-menu a').forEach(link => {
+    document.querySelectorAll('.nav-menu a, .nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
-            // Only handle links that point to the Take Your Shot section
-            if (this.getAttribute('href').includes('#take-your-shot')) {
+            // Handle links that point to specific sections
+            const href = this.getAttribute('href');
+            if (href.includes('#take-your-shot') || href.includes('#beyond-the-game')) {
                 e.preventDefault();
                 
                 // If we're already on index.html, scroll to the section
                 if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-                    const target = document.querySelector('#take-your-shot');
+                    const sectionId = href.split('#')[1];
+                    const target = document.querySelector(`#${sectionId}`);
                     if (target) {
                         const navHeight = nav.offsetHeight;
                         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight + 10;
@@ -41,15 +43,15 @@ const initNavigation = () => {
                     }
                 } else {
                     // If we're on another page, navigate to index.html with the hash
-                    window.location.href = '/new/index.html#take-your-shot';
+                    window.location.href = href;
                 }
             }
         });
     });
 
     // Handle hash in URL when page loads
-    if (window.location.hash === '#take-your-shot') {
-        const target = document.querySelector('#take-your-shot');
+    if (window.location.hash === '#take-your-shot' || window.location.hash === '#beyond-the-game') {
+        const target = document.querySelector(window.location.hash);
         if (target) {
             // Jump directly to the position without smooth scrolling
             const navHeight = nav.offsetHeight;
