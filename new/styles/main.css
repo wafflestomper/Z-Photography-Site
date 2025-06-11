@@ -188,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (max-width: 768px) {
     .take-your-shot-section {
-        padding: 2.5rem 0;
+        padding: 0;
     }
     .sports-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -870,6 +870,7 @@ address p {
     color: #bbb;
     margin-top: 0;
     margin-bottom: 0;
+    font-size: 1rem !important; /* Match the about section h3 size */
 }
 
 .about-teaser-text h2 {
@@ -887,10 +888,33 @@ address p {
     margin-top: 0;
 }
 
+/* Remove the desktop-only styles for capture-h3 */
 .capture-h3 {
-    color: #666666 !important;
-    text-align: center;
-    margin-top: 0;
+    display: none; /* Hide by default on desktop */
+}
+
+@media (max-width: 768px) {
+    .capture-h3 {
+        display: block; /* Show on mobile */
+    }
+
+    .take-your-shot-section {
+        padding: 0; /* Remove the 40px padding */
+    }
+
+    #take-your-shot h2 {
+        font-size: 1.3rem !important; /* Match the about section h2 size */
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 18px 0;
+    }
+
+    .sports-description {
+        text-align: justify !important; /* Override the center alignment */
+        text-align-last: left !important; /* Ensure the last line is left-aligned */
+        color: #fff !important; /* Change text color to white */
+    }
 }
 
 .cta-button {
