@@ -23,6 +23,27 @@ const initNavigation = () => {
         lastScroll = currentScroll;
     });
 
+    // Handle mobile menu toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
     // Handle all navigation links
     document.querySelectorAll('.nav-menu a, .nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
