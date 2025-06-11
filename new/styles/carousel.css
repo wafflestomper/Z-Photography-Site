@@ -1,11 +1,12 @@
 .hero-carousel {
-    margin-top: 0; /* Removed extra margin since main has padding-top */
     position: relative;
     width: 100%;
-    overflow: visible;
+    height: 600px; /* Increased height for desktop */
+    overflow: hidden;
+    margin-top: -45px; /* Move up by 45px */
+    padding-bottom: 0; /* Remove bottom padding */
     opacity: 0; /* Start hidden */
     transition: opacity 0.5s ease-in-out;
-    padding-bottom: 32px; /* Reduced padding */
 }
 
 .hero-carousel.loaded {
@@ -96,7 +97,8 @@ img.tns-item {
     .hero-carousel {
         margin-top: -45px; /* Move up by 45px */
         display: block; /* Show on mobile */
-        height: 325px; /* Reduced height for mobile */
+        height: 325px; /* Fixed height for mobile */
+        padding-bottom: 0; /* Remove bottom padding */
     }
 
     .my-slider {
@@ -127,4 +129,25 @@ img.tns-item {
         width: auto;
         object-fit: contain;
     }
+
+    /* Capture heading styles for mobile */
+    .capture-h3 {
+        display: block !important; /* Force display on mobile */
+        text-align: center;
+        font-size: 1.3rem; /* Increased from 1.1rem */
+        margin: 0;
+        padding: 1.125rem 1rem;
+        color: #fff;
+        background-color: #000;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        max-width: 600px;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* Hide capture heading on desktop */
+.capture-h3 {
+    display: none;
 } 

@@ -1,24 +1,37 @@
 .about-teaser-section {
-    padding: 10px 0 40px 0; /* Removed top padding, kept bottom padding at 40px */
-    background-color: #f9f9f9; /* Light grey background for the section */
+    padding: 0; /* Removed all padding */
+    background-color: transparent; /* Remove the gray background */
+}
+
+.about-teaser-section .section-container {
+    padding: 0;
+    max-width: 1200px;
+    margin: 25px auto; /* Keep margin for desktop */
 }
 
 .about-teaser-content {
     display: flex;
     align-items: flex-start; /* Align items to the top */
     gap: 30px; /* Space between image and text */
+    padding: 0;
+    margin: 0;
 }
 
-.about-teaser-image { /* Add a wrapper for the image if needed for positioning */
-    flex-shrink: 0; /* Prevent image from shrinking */
+.about-teaser-image {
+    flex-shrink: 0;
+    margin-bottom: 0; /* Remove any bottom margin */
+    padding-bottom: 0; /* Remove any bottom padding */
+    line-height: 0; /* Remove any line-height spacing */
 }
 
 .about-teaser-image img {
-    width: 40vw; /* Make image larger, closer to 1/2 screen width */
-    max-width: 480px; /* Adjust max width accordingly */
+    width: 40vw;
+    max-width: 480px;
     height: auto;
-    border-radius: 8px; /* Optional: adds rounded corners to the image */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: block; /* Remove any inline spacing */
+    margin-bottom: 0; /* Remove any bottom margin */
 }
 
 .about-teaser-text {
@@ -31,6 +44,12 @@
     margin-bottom: 0px;
 }
 
+.about-teaser-text h3 {
+    font-size: 1rem;
+    color: #666; /* Lighter gray color */
+    margin: 0;
+}
+
 .about-teaser-text p {
     font-size: 1.1em;
     line-height: 1.6;
@@ -39,29 +58,62 @@
 
 /* Adjust padding for this specific section's container */
 .about-teaser-section .section-container {
-    padding-left: 0.5rem; /* Reduce left padding */
-    padding-right: 1.5rem; /* Keep right padding standard or adjust as needed */
+    padding: 0; /* Remove all padding */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .about-teaser-section .section-container {
+        max-width: none;
+        margin: 0;
+    }
+
     .about-teaser-content {
-        flex-direction: column; /* Stack image and text vertically on smaller screens */
-        align-items: center; /* Center items when stacked */
-        text-align: center; /* Center-align text for a better look on mobile */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        gap: 0; /* Remove any gap between flex items */
+    }
+
+    .about-teaser-image {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .about-teaser-image img {
-        width: 80%; /* On smaller screens, take 80% of its container */
-        /* The max-width: 350px from the desktop style will still apply here */
-        margin-bottom: 20px; /* Add space below image when stacked */
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .about-teaser-text {
+        margin: 0 10px;
+        padding-top: 0; /* Remove any top padding */
     }
 
     .about-teaser-text h2 {
-        font-size: 1.8em;
+        font-size: 1.3rem !important;
+        margin: 0;
+        padding: 18px 0; /* Added 18px padding top and bottom */
+    }
+
+    .about-teaser-text h3 {
+        font-size: 1rem;
+        color: #666; /* Lighter gray color */
+        margin: 0;
     }
 
     .about-teaser-text p {
         font-size: 1em;
+        text-align: justify;
+        text-align-last: left; /* This ensures the last line is left-aligned */
+    }
+
+    .about-teaser-text .cta-button {
+        margin-bottom: 10px; /* Added 10px margin below the button */
     }
 } 
