@@ -12,9 +12,17 @@
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 150px;
     margin-bottom: 40px;
+    justify-content: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-column {
+    min-width: 220px;
 }
 
 .footer-column h3 {
