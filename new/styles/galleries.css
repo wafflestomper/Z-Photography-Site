@@ -1,12 +1,14 @@
 .galleries-section {
-    padding: 120px 0 60px;
+    padding: -2px 0 60px;
 }
 
 .galleries-section h1 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
     font-size: 2.5rem;
     color: var(--text-color);
+    position: relative;
+    z-index: 2;
 }
 
 .gallery-container {
@@ -15,8 +17,10 @@
     background: white;
     border-radius: 12px;
     overflow: visible;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: -3rem;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 #pictimeIntegration {
