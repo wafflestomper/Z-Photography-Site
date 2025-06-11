@@ -177,7 +177,19 @@ class Carousel {
                 gutter: 0,
                 edgePadding: 150,
                 startIndex: randomStartIndex,
-                onInit: this.updateSlideAppearance
+                onInit: this.updateSlideAppearance,
+                touch: true,
+                swipeAngle: 45,
+                preventScrollOnTouch: 'auto',
+                responsive: {
+                    0: {
+                        edgePadding: 20,
+                        mouseDrag: true,
+                        touch: true,
+                        swipeAngle: 45,
+                        preventScrollOnTouch: 'auto'
+                    }
+                }
             });
 
             this.slider.events.on('transitionEnd', this.updateSlideAppearance);
@@ -200,7 +212,5 @@ class Carousel {
 
 // Initialize carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth > 768) { 
-        new Carousel();
-    }
+    new Carousel();
 }); 

@@ -94,7 +94,37 @@ img.tns-item {
 /* Mobile Styles */
 @media (max-width: 768px) {
     .hero-carousel {
-        margin-top: 0;
-        display: none; /* Hide on mobile as we'll use the existing mobile implementation */
+        margin-top: -45px; /* Move up by 45px */
+        display: block; /* Show on mobile */
+        height: 325px; /* Reduced height for mobile */
+    }
+
+    .my-slider {
+        height: 325px; /* Match container height */
+    }
+
+    .tns-outer {
+        height: 325px; /* Match container height */
+    }
+
+    .carousel-arrow {
+        width: 32px; /* Smaller arrows for mobile */
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .carousel-arrow.prev {
+        left: 10px; /* Closer to edges on mobile */
+    }
+
+    .carousel-arrow.next {
+        right: 10px; /* Closer to edges on mobile */
+    }
+
+    /* Adjust image sizing for mobile */
+    .tns-slider img {
+        max-height: 325px;
+        width: auto;
+        object-fit: contain;
     }
 } 
