@@ -46,41 +46,49 @@ img.tns-item {
 /* Navigation Controls */
 .carousel-controls {
     position: absolute;
-    bottom: -4px; /* Moved up closer to images */
+    top: 50%;
     left: 0;
     right: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    padding: 4px 0;
-    background-color: #f9f9f9; /* Changed background color */
-    height: 32px;
+    height: 100%;
+    transform: translateY(-50%);
     z-index: 10;
+    pointer-events: none; /* Allow clicks to pass through the container */
 }
 
 .carousel-arrow {
-    background: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.5);
     border: none;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: #000;
     transition: all var(--transition-speed);
-    padding: 0 15px;
-    outline: none;
-    line-height: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    transform: translateY(-4px);
-    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    pointer-events: auto; /* Re-enable clicks for the arrows */
+}
+
+.carousel-arrow.prev {
+    left: 50px;
+}
+
+.carousel-arrow.next {
+    right: 50px;
 }
 
 .carousel-arrow:hover {
-    color: var(--accent-color);
+    background: #0066cc;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* Mobile Styles */
