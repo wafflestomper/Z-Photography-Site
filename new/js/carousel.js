@@ -126,7 +126,7 @@ class Carousel {
 
     async init() {
         try {
-            const response = await fetch('/new/data/photos.json');
+            const response = await fetch('/data/photos.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const photos = await response.json();
             
@@ -144,7 +144,7 @@ class Carousel {
                         resolve(img);
                     };
                     img.onerror = () => { console.error('Failed to load image:', photo.src); resolve(null); };
-                    img.src = `/new/${photo.src}`;
+                    img.src = `/${photo.src}`;
                     img.alt = photo.alt;
                 });
             });

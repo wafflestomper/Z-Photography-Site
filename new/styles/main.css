@@ -413,13 +413,13 @@ address p {
   transform: translateY(0);
 }
 
-.accordion-card[data-href="/new/sports/baseball.html"] {
+.accordion-card[data-href="/sports/baseball.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/baseball.html"] img {
+.accordion-card[data-href="/sports/baseball.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -427,9 +427,9 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/baseball.html"]:hover img,
-.accordion-card[data-href="/new/sports/baseball.html"]:focus img,
-.accordion-card[data-href="/new/sports/baseball.html"].active img {
+.accordion-card[data-href="/sports/baseball.html"]:hover img,
+.accordion-card[data-href="/sports/baseball.html"]:focus img,
+.accordion-card[data-href="/sports/baseball.html"].active img {
   transform: translateY(-25%);
 }
 
@@ -461,13 +461,13 @@ address p {
   display: block;
 }
 
-.accordion-card[data-href="/new/sports/basketball.html"] {
+.accordion-card[data-href="/sports/basketball.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/basketball.html"] img {
+.accordion-card[data-href="/sports/basketball.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -476,36 +476,36 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/basketball.html"]:hover img,
-.accordion-card[data-href="/new/sports/basketball.html"]:focus img,
-.accordion-card[data-href="/new/sports/basketball.html"].active img {
+.accordion-card[data-href="/sports/basketball.html"]:hover img,
+.accordion-card[data-href="/sports/basketball.html"]:focus img,
+.accordion-card[data-href="/sports/basketball.html"].active img {
   transform: translateY(-25%);
   object-position: center 0;
 }
 
-.accordion-card[data-href="/new/sports/basketball.html"]:hover,
-.accordion-card[data-href="/new/sports/basketball.html"]:focus,
-.accordion-card[data-href="/new/sports/basketball.html"].active {
+.accordion-card[data-href="/sports/basketball.html"]:hover,
+.accordion-card[data-href="/sports/basketball.html"]:focus,
+.accordion-card[data-href="/sports/basketball.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/baseball.html"]:hover,
-.accordion-card[data-href="/new/sports/baseball.html"]:focus,
-.accordion-card[data-href="/new/sports/baseball.html"].active {
+.accordion-card[data-href="/sports/baseball.html"]:hover,
+.accordion-card[data-href="/sports/baseball.html"]:focus,
+.accordion-card[data-href="/sports/baseball.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/football.html"] {
+.accordion-card[data-href="/sports/football.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/football.html"] img {
+.accordion-card[data-href="/sports/football.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -514,28 +514,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/football.html"]:hover img,
-.accordion-card[data-href="/new/sports/football.html"]:focus img,
-.accordion-card[data-href="/new/sports/football.html"].active img {
+.accordion-card[data-href="/sports/football.html"]:hover img,
+.accordion-card[data-href="/sports/football.html"]:focus img,
+.accordion-card[data-href="/sports/football.html"].active img {
   transform: translateY(-25%);
   object-position: right 0;
 }
 
-.accordion-card[data-href="/new/sports/football.html"]:hover,
-.accordion-card[data-href="/new/sports/football.html"]:focus,
-.accordion-card[data-href="/new/sports/football.html"].active {
+.accordion-card[data-href="/sports/football.html"]:hover,
+.accordion-card[data-href="/sports/football.html"]:focus,
+.accordion-card[data-href="/sports/football.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/futsal.html"] {
+.accordion-card[data-href="/sports/futsal.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/futsal.html"] img {
+.accordion-card[data-href="/sports/futsal.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -543,27 +543,27 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/futsal.html"]:hover img,
-.accordion-card[data-href="/new/sports/futsal.html"]:focus img,
-.accordion-card[data-href="/new/sports/futsal.html"].active img {
+.accordion-card[data-href="/sports/futsal.html"]:hover img,
+.accordion-card[data-href="/sports/futsal.html"]:focus img,
+.accordion-card[data-href="/sports/futsal.html"].active img {
   transform: translateY(-25%);
 }
 
-.accordion-card[data-href="/new/sports/futsal.html"]:hover,
-.accordion-card[data-href="/new/sports/futsal.html"]:focus,
-.accordion-card[data-href="/new/sports/futsal.html"].active {
+.accordion-card[data-href="/sports/futsal.html"]:hover,
+.accordion-card[data-href="/sports/futsal.html"]:focus,
+.accordion-card[data-href="/sports/futsal.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/indoor-track.html"] {
+.accordion-card[data-href="/sports/indoor-track.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/indoor-track.html"] img {
+.accordion-card[data-href="/sports/indoor-track.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -571,27 +571,27 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/indoor-track.html"]:hover img,
-.accordion-card[data-href="/new/sports/indoor-track.html"]:focus img,
-.accordion-card[data-href="/new/sports/indoor-track.html"].active img {
+.accordion-card[data-href="/sports/indoor-track.html"]:hover img,
+.accordion-card[data-href="/sports/indoor-track.html"]:focus img,
+.accordion-card[data-href="/sports/indoor-track.html"].active img {
   transform: translateY(-25%);
 }
 
-.accordion-card[data-href="/new/sports/indoor-track.html"]:hover,
-.accordion-card[data-href="/new/sports/indoor-track.html"]:focus,
-.accordion-card[data-href="/new/sports/indoor-track.html"].active {
+.accordion-card[data-href="/sports/indoor-track.html"]:hover,
+.accordion-card[data-href="/sports/indoor-track.html"]:focus,
+.accordion-card[data-href="/sports/indoor-track.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/lacrosse.html"] {
+.accordion-card[data-href="/sports/lacrosse.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/lacrosse.html"] img {
+.accordion-card[data-href="/sports/lacrosse.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -600,28 +600,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/lacrosse.html"]:hover img,
-.accordion-card[data-href="/new/sports/lacrosse.html"]:focus img,
-.accordion-card[data-href="/new/sports/lacrosse.html"].active img {
+.accordion-card[data-href="/sports/lacrosse.html"]:hover img,
+.accordion-card[data-href="/sports/lacrosse.html"]:focus img,
+.accordion-card[data-href="/sports/lacrosse.html"].active img {
   transform: translateY(-25%);
   object-position: left 0;
 }
 
-.accordion-card[data-href="/new/sports/lacrosse.html"]:hover,
-.accordion-card[data-href="/new/sports/lacrosse.html"]:focus,
-.accordion-card[data-href="/new/sports/lacrosse.html"].active {
+.accordion-card[data-href="/sports/lacrosse.html"]:hover,
+.accordion-card[data-href="/sports/lacrosse.html"]:focus,
+.accordion-card[data-href="/sports/lacrosse.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/rugby.html"] {
+.accordion-card[data-href="/sports/rugby.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/rugby.html"] img {
+.accordion-card[data-href="/sports/rugby.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -630,28 +630,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/rugby.html"]:hover img,
-.accordion-card[data-href="/new/sports/rugby.html"]:focus img,
-.accordion-card[data-href="/new/sports/rugby.html"].active img {
+.accordion-card[data-href="/sports/rugby.html"]:hover img,
+.accordion-card[data-href="/sports/rugby.html"]:focus img,
+.accordion-card[data-href="/sports/rugby.html"].active img {
   transform: translateY(-25%);
   object-position: left 0;
 }
 
-.accordion-card[data-href="/new/sports/rugby.html"]:hover,
-.accordion-card[data-href="/new/sports/rugby.html"]:focus,
-.accordion-card[data-href="/new/sports/rugby.html"].active {
+.accordion-card[data-href="/sports/rugby.html"]:hover,
+.accordion-card[data-href="/sports/rugby.html"]:focus,
+.accordion-card[data-href="/sports/rugby.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/soccer.html"] {
+.accordion-card[data-href="/sports/soccer.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/soccer.html"] img {
+.accordion-card[data-href="/sports/soccer.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -660,28 +660,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/soccer.html"]:hover img,
-.accordion-card[data-href="/new/sports/soccer.html"]:focus img,
-.accordion-card[data-href="/new/sports/soccer.html"].active img {
+.accordion-card[data-href="/sports/soccer.html"]:hover img,
+.accordion-card[data-href="/sports/soccer.html"]:focus img,
+.accordion-card[data-href="/sports/soccer.html"].active img {
   transform: translateY(-25%);
   object-position: right 0;
 }
 
-.accordion-card[data-href="/new/sports/soccer.html"]:hover,
-.accordion-card[data-href="/new/sports/soccer.html"]:focus,
-.accordion-card[data-href="/new/sports/soccer.html"].active {
+.accordion-card[data-href="/sports/soccer.html"]:hover,
+.accordion-card[data-href="/sports/soccer.html"]:focus,
+.accordion-card[data-href="/sports/soccer.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/squash.html"] {
+.accordion-card[data-href="/sports/squash.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/squash.html"] img {
+.accordion-card[data-href="/sports/squash.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -690,28 +690,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/squash.html"]:hover img,
-.accordion-card[data-href="/new/sports/squash.html"]:focus img,
-.accordion-card[data-href="/new/sports/squash.html"].active img {
+.accordion-card[data-href="/sports/squash.html"]:hover img,
+.accordion-card[data-href="/sports/squash.html"]:focus img,
+.accordion-card[data-href="/sports/squash.html"].active img {
   transform: translateY(-25%);
   object-position: center 0;
 }
 
-.accordion-card[data-href="/new/sports/squash.html"]:hover,
-.accordion-card[data-href="/new/sports/squash.html"]:focus,
-.accordion-card[data-href="/new/sports/squash.html"].active {
+.accordion-card[data-href="/sports/squash.html"]:hover,
+.accordion-card[data-href="/sports/squash.html"]:focus,
+.accordion-card[data-href="/sports/squash.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/tennis.html"] {
+.accordion-card[data-href="/sports/tennis.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/tennis.html"] img {
+.accordion-card[data-href="/sports/tennis.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -720,28 +720,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/tennis.html"]:hover img,
-.accordion-card[data-href="/new/sports/tennis.html"]:focus img,
-.accordion-card[data-href="/new/sports/tennis.html"].active img {
+.accordion-card[data-href="/sports/tennis.html"]:hover img,
+.accordion-card[data-href="/sports/tennis.html"]:focus img,
+.accordion-card[data-href="/sports/tennis.html"].active img {
   transform: translateY(-25%);
   object-position: left 0;
 }
 
-.accordion-card[data-href="/new/sports/tennis.html"]:hover,
-.accordion-card[data-href="/new/sports/tennis.html"]:focus,
-.accordion-card[data-href="/new/sports/tennis.html"].active {
+.accordion-card[data-href="/sports/tennis.html"]:hover,
+.accordion-card[data-href="/sports/tennis.html"]:focus,
+.accordion-card[data-href="/sports/tennis.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/track-and-field.html"] {
+.accordion-card[data-href="/sports/track-and-field.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/track-and-field.html"] img {
+.accordion-card[data-href="/sports/track-and-field.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -750,28 +750,28 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/track-and-field.html"]:hover img,
-.accordion-card[data-href="/new/sports/track-and-field.html"]:focus img,
-.accordion-card[data-href="/new/sports/track-and-field.html"].active img {
+.accordion-card[data-href="/sports/track-and-field.html"]:hover img,
+.accordion-card[data-href="/sports/track-and-field.html"]:focus img,
+.accordion-card[data-href="/sports/track-and-field.html"].active img {
   transform: translateY(-25%);
   object-position: center 0;
 }
 
-.accordion-card[data-href="/new/sports/track-and-field.html"]:hover,
-.accordion-card[data-href="/new/sports/track-and-field.html"]:focus,
-.accordion-card[data-href="/new/sports/track-and-field.html"].active {
+.accordion-card[data-href="/sports/track-and-field.html"]:hover,
+.accordion-card[data-href="/sports/track-and-field.html"]:focus,
+.accordion-card[data-href="/sports/track-and-field.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/wrestling.html"] {
+.accordion-card[data-href="/sports/wrestling.html"] {
   height: 350px;
   overflow: hidden;
   background-color: transparent;
 }
 
-.accordion-card[data-href="/new/sports/wrestling.html"] img {
+.accordion-card[data-href="/sports/wrestling.html"] img {
   width: 100%;
   height: 200%;
   object-fit: cover;
@@ -780,16 +780,16 @@ address p {
   transform: translateY(25%);
 }
 
-.accordion-card[data-href="/new/sports/wrestling.html"]:hover img,
-.accordion-card[data-href="/new/sports/wrestling.html"]:focus img,
-.accordion-card[data-href="/new/sports/wrestling.html"].active img {
+.accordion-card[data-href="/sports/wrestling.html"]:hover img,
+.accordion-card[data-href="/sports/wrestling.html"]:focus img,
+.accordion-card[data-href="/sports/wrestling.html"].active img {
   transform: translateY(-25%);
   object-position: center 0;
 }
 
-.accordion-card[data-href="/new/sports/wrestling.html"]:hover,
-.accordion-card[data-href="/new/sports/wrestling.html"]:focus,
-.accordion-card[data-href="/new/sports/wrestling.html"].active {
+.accordion-card[data-href="/sports/wrestling.html"]:hover,
+.accordion-card[data-href="/sports/wrestling.html"]:focus,
+.accordion-card[data-href="/sports/wrestling.html"].active {
   flex: 4 1 0;
   max-width: 400px;
   background-color: transparent;
@@ -874,40 +874,40 @@ address p {
     transform: none !important;
   }
   .take-your-shot-section .accordion-card[data-href*="baseball"] img {
-    content: url('/new/images/sport-menu/m-baseball.jpg');
+    content: url('/images/sport-menu/m-baseball.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="basketball"] img {
-    content: url('/new/images/sport-menu/m-basketball.jpg');
+    content: url('/images/sport-menu/m-basketball.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="football"] img {
-    content: url('/new/images/sport-menu/m-football.jpg');
+    content: url('/images/sport-menu/m-football.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="futsal"] img {
-    content: url('/new/images/sport-menu/m-futsal.jpg');
+    content: url('/images/sport-menu/m-futsal.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="indoor-track"] img {
-    content: url('/new/images/sport-menu/m-indoor-track.jpg');
+    content: url('/images/sport-menu/m-indoor-track.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="lacrosse"] img {
-    content: url('/new/images/sport-menu/m-lacrosse.jpg');
+    content: url('/images/sport-menu/m-lacrosse.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="rugby"] img {
-    content: url('/new/images/sport-menu/m-rugby.jpg');
+    content: url('/images/sport-menu/m-rugby.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="soccer"] img {
-    content: url('/new/images/sport-menu/m-soccer.jpg');
+    content: url('/images/sport-menu/m-soccer.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="squash"] img {
-    content: url('/new/images/sport-menu/m-squash.jpg');
+    content: url('/images/sport-menu/m-squash.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="tennis"] img {
-    content: url('/new/images/sport-menu/m-tennis.jpg');
+    content: url('/images/sport-menu/m-tennis.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="track-and-field"] img {
-    content: url('/new/images/sport-menu/m-outdoor-track.jpg');
+    content: url('/images/sport-menu/m-outdoor-track.jpg');
   }
   .take-your-shot-section .accordion-card[data-href*="wrestling"] img {
-    content: url('/new/images/sport-menu/m-wrestling.jpg');
+    content: url('/images/sport-menu/m-wrestling.jpg');
   }
 }
 

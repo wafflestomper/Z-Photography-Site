@@ -70,35 +70,42 @@
 
     .about-teaser-content {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         text-align: center;
         padding: 0;
         margin: 0;
-        gap: 0; /* Remove any gap between flex items */
+        gap: 0;
     }
 
     .about-teaser-image {
-        margin-bottom: 0;
-        padding-bottom: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        order: 1;
     }
 
     .about-teaser-image img {
         width: 100%;
+        height: auto;
         margin: 0;
         padding: 0;
         border-radius: 0;
         box-shadow: none;
+        display: block;
     }
 
     .about-teaser-text {
-        margin: 0 10px;
-        padding-top: 0; /* Remove any top padding */
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 1rem !important;
+        box-sizing: border-box;
+        order: 2;
     }
 
     .about-teaser-text h2 {
         font-size: 1.3rem !important;
         margin: 0;
-        padding: 18px 0; /* Added 18px padding top and bottom */
+        padding: 18px 0;
     }
 
     .about-teaser-text h3 {

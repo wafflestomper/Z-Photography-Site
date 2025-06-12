@@ -45,13 +45,61 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body > main {
+        padding-top: 50px !important;
+    }
     .about-section {
         padding: 100px 0 40px;
     }
+    body > main > section.about-section {
+        padding-top: 2rem !important;
+    }
+    body > main > section.about-section > div > div {
+        gap: 0 !important;
+    }
+    body > main > section.about-section > div > div > div.about-text {
+        width: auto !important;
+        padding: 0 !important;
+    }
+    body > main > section.about-section > div > div > div.about-text p {
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+    .about-image img, .about-images img {
+        border-radius: 12px !important;
+    }
+    body > main > h3.capture-h3 {
+        color: #fff !important;
+    }
 
     .about-content {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 2rem;
+    }
+
+    .about-images {
+        width: 100%;
+        order: 1;
+        margin: 0;
+        padding: 0;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+
+    .about-text {
+        width: 100%;
+        order: 2;
+        margin: 0;
+        padding: 0 10px;
     }
 
     .about-section h1 {
@@ -66,4 +114,8 @@
 
 .service-hero h1 {
     font-size: 40px;
+}
+
+body > main > section.service-hero.dark > h3 {
+    color: #bbb;
 } 
