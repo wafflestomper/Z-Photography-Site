@@ -132,16 +132,12 @@ body {
 
 .feature-list li {
     margin-bottom: 20px;
-    padding-left: 25px;
+    padding-left: 0;
     position: relative;
 }
 
 .feature-list li:before {
-    content: "•";
-    color: #007bff;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
+    display: none;
 }
 
 .image-container {
@@ -365,6 +361,28 @@ body {
     
     .features-grid {
         grid-template-columns: 1fr 1fr;
+    }
+    
+    body > main > section:nth-child(2) > div.text-content,
+    body > main > section.text-image-grid.reverse > div.text-content {
+        padding: 0 !important;
+    }
+    body > main > section:nth-child(2) > div.text-content p,
+    body > main > section.text-image-grid.reverse > div.text-content p {
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+    body > main > section.text-image-grid.reverse > div.text-content > ul,
+    body > main > section.text-image-grid.reverse > div.text-content > ul > li {
+        list-style: none !important;
+        list-style-type: none !important;
+        background: none !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    body > main > section.text-image-grid.reverse > div.text-content > ul {
+        text-align: justify !important;
+        text-align-last: left !important;
     }
 }
 
