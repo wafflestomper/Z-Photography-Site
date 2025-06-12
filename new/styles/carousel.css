@@ -132,22 +132,48 @@ img.tns-item {
 
     /* Capture heading styles for mobile */
     .capture-h3 {
-        display: block !important; /* Force display on mobile */
+        display: block !important;
         text-align: center;
-        font-size: 1.3rem; /* Increased from 1.1rem */
-        margin: 0;
-        padding: 1.125rem 1rem;
-        color: #fff;
-        background-color: #000;
+        font-size: 1rem;
+        margin: 0 auto !important;
+        color: #666 !important;
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         max-width: 600px;
+        width: auto !important;
         position: relative;
         z-index: 1;
+        background: none;
+        padding: 1rem 0;
+        border-radius: 0;
+        white-space: normal !important;
+    }
+
+    body > main > h3 {
+        background: #000 !important;
+        color: #fff !important;
+        padding: 1rem;
+        margin: 0;
+        display: block !important;
     }
 }
 
-/* Hide capture heading on desktop */
+/* Base capture heading styles */
 .capture-h3 {
-    display: none;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 auto; /* Center horizontally */
+    color: #555;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    display: block; /* Show by default on desktop */
+    white-space: nowrap; /* Keep text on one line */
+    width: 100%; /* Ensure full width for centering */
+}
+
+body > main > h3 {
+    display: none !important;
 } 

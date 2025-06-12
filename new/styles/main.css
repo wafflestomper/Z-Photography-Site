@@ -57,13 +57,15 @@ h1, h2, h3, h4, h5, h6 {
 /* Services Section */
 .services-overview {
     padding: var(--section-spacing) 0;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 .services-overview h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+    font-size: 2.5rem !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .services-grid {
@@ -909,9 +911,13 @@ address p {
   }
 }
 
+#beyond-the-game {
+    padding-top: var(--section-spacing);
+    padding-bottom: 0;
+}
+
 #beyond-the-game h2 {
-    margin-top: -40px;
-    margin-bottom: 0;
+    margin: 0;
     position: relative;
     z-index: 2;
 }
@@ -956,20 +962,46 @@ address p {
 .about-teaser-text h3 {
     color: #555;
     margin-top: 0;
+    font-size: 1rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 /* Remove the desktop-only styles for capture-h3 */
 .capture-h3 {
-    display: none; /* Hide by default on desktop */
+    display: block; /* Show on desktop */
 }
 
 @media (max-width: 768px) {
     .capture-h3 {
-        display: block; /* Show on mobile */
+        display: block !important; /* Show on mobile */
+        text-align: center;
+        color: #bbb;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1rem !important;
     }
 
     .take-your-shot-section {
         padding: 0; /* Remove the 40px padding */
+    }
+
+    #beyond-the-game {
+        padding-top: 0;
+    }
+
+    #beyond-the-game > div > p {
+        margin-top: 0;
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+
+    body > main > h3 {
+        background: #000;
+        color: #fff;
+        padding: 1rem;
+        margin: 0;
     }
 
     #take-your-shot h2 {
@@ -980,10 +1012,33 @@ address p {
         padding: 18px 0;
     }
 
+    #beyond-the-game h2 {
+        font-size: 1.3rem !important; /* Match the about section h2 size */
+        text-align: center;
+        margin: 0 !important;
+        padding: 0;
+    }
+
     .sports-description {
         text-align: justify !important; /* Override the center alignment */
         text-align-last: left !important; /* Ensure the last line is left-aligned */
         color: #fff !important; /* Change text color to white */
+    }
+
+    .about-teaser-text p {
+        text-align: justify !important;
+        text-align-last: left !important;
+        padding: 0 1rem;
+        margin: 0;
+    }
+
+    #about-teaser > div > div.about-teaser-text > h3 {
+        text-align: center !important;
+    }
+
+    #about-teaser > div > div.about-teaser-text > p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -1016,4 +1071,8 @@ address p {
 
 .portraits-description {
     color: #666666;
+}
+
+#about-teaser > div > div.about-teaser-text > h3 {
+    text-align: left;
 } 
