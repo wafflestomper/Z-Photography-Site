@@ -809,34 +809,104 @@ address p {
 }
 
 @media (max-width: 600px) {
-  .horizontal-accordion {
+  .take-your-shot-section .horizontal-accordion {
     flex-direction: column;
     height: auto;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
-  .accordion-card,
-  .accordion-card.active,
-  .accordion-card:hover,
-  .accordion-card:focus {
+  .take-your-shot-section .accordion-card,
+  .take-your-shot-section .accordion-card.active,
+  .take-your-shot-section .accordion-card:hover,
+  .take-your-shot-section .accordion-card:focus {
     max-width: 100%;
     min-width: 100%;
+    aspect-ratio: 1/1;
+    height: auto !important;
     border-right: none;
     border-bottom: 1px solid #222;
     font-size: 1rem;
-    padding-bottom: 1rem;
+    padding: 0;
+    margin: 0;
+    flex: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
   }
-  .accordion-card:last-child {
+  .take-your-shot-section .accordion-card:last-child {
     border-bottom: none;
+    margin-bottom: 1rem;
   }
-  
-  /* TODO: Mobile Image Handling
-   * Current image treatment doesn't work well on mobile due to small card heights
-   * Options to consider:
-   * 1. Use different image size/ratio for mobile
-   * 2. Switch to different interaction pattern
-   * 3. Adjust mobile layout for better image visibility
-   * 4. Use different visual treatment for mobile
-   * To be addressed once all sport images are implemented
-   */
+  .take-your-shot-section .accordion-card img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transform: none !important;
+    transition: none !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+  }
+  .take-your-shot-section .accordion-card::after {
+    content: attr(data-sport);
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .take-your-shot-section .accordion-card[data-href*="baseball"] img {
+    content: url('/new/images/sport-menu/m-baseball.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="basketball"] img {
+    content: url('/new/images/sport-menu/m-basketball.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="football"] img {
+    content: url('/new/images/sport-menu/m-football.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="futsal"] img {
+    content: url('/new/images/sport-menu/m-futsal.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="indoor-track"] img {
+    content: url('/new/images/sport-menu/m-indoor-track.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="lacrosse"] img {
+    content: url('/new/images/sport-menu/m-lacrosse.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="rugby"] img {
+    content: url('/new/images/sport-menu/m-rugby.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="soccer"] img {
+    content: url('/new/images/sport-menu/m-soccer.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="squash"] img {
+    content: url('/new/images/sport-menu/m-squash.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="tennis"] img {
+    content: url('/new/images/sport-menu/m-tennis.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="track-and-field"] img {
+    content: url('/new/images/sport-menu/m-outdoor-track.jpg');
+  }
+  .take-your-shot-section .accordion-card[data-href*="wrestling"] img {
+    content: url('/new/images/sport-menu/m-wrestling.jpg');
+  }
 }
 
 #beyond-the-game h2 {
