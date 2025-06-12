@@ -124,21 +124,77 @@
     }
 }
 
+.mobile-events-cards {
+    display: none;
+}
+
 @media (max-width: 600px) {
-    .events-accordion {
+    .mobile-events-cards {
+        display: flex;
         flex-direction: column;
-        height: auto;
+        gap: 1rem;
+        margin-bottom: 2rem;
     }
-    .events-accordion .accordion-card,
-    .events-accordion .accordion-card.active,
-    .events-accordion .accordion-card:hover,
-    .events-accordion .accordion-card:focus {
-        border-right: none;
+    .mobile-events-cards .accordion-card {
+        background: #232526;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
         border-bottom: 1px solid #222;
-        font-size: 1rem;
-        padding-bottom: 1rem;
+        font-size: 1.1rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: #fff;
+        padding: 0;
+        margin: 0;
+        flex: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+        min-width: 100%;
+        max-width: 100%;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
     }
-    .events-accordion .accordion-card:last-child {
+    .mobile-events-cards .accordion-card:last-child {
         border-bottom: none;
+        margin-bottom: 1rem;
+    }
+    .mobile-events-cards .accordion-card img {
+        width: 100%;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block;
+        border-radius: 12px;
+        transition: none !important;
+    }
+    .mobile-events-cards .accordion-card::after {
+        content: attr(data-event);
+        display: block !important;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: white;
+        font-size: 1.5rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.5);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        opacity: 1 !important;
+        transform: none !important;
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+    }
+    .events-section {
+        display: none !important;
     }
 } 
