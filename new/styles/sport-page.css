@@ -330,6 +330,16 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body, main, .sport-hero {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    .sport-hero {
+        margin-top: 56px !important;
+    }
+    .content-section {
+        padding-top: 0 !important;
+    }
     .hero-image {
         height: 50vh;
         min-height: 300px;
@@ -363,12 +373,19 @@ body {
         grid-template-columns: 1fr 1fr;
     }
     
+    body > main > section:nth-child(2) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    body > main > section:nth-child(2) > div:nth-child(1) > div.text-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
     body > main > section:nth-child(2) > div.text-content,
     body > main > section.text-image-grid.reverse > div.text-content {
         padding: 0 !important;
     }
-    body > main > section:nth-child(2) > div.text-content p,
-    body > main > section.text-image-grid.reverse > div.text-content p {
+    body > main > section:nth-child(2) > div:nth-child(1) > div.text-content p:nth-child(2) {
         text-align: justify !important;
         text-align-last: left !important;
     }
@@ -383,6 +400,35 @@ body {
     body > main > section.text-image-grid.reverse > div.text-content > ul {
         text-align: justify !important;
         text-align-last: left !important;
+    }
+    body > main > section:nth-child(2) .text-content > p {
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+    .text-image-grid.reverse .text-content > p {
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+    .text-image-grid.reverse .text-content > ul > li {
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+    body > main > section:nth-child(2) > div.text-image-grid.reverse > div.text-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    body > main > section:nth-child(2) > section > div.text-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    body > main > section:nth-child(2) > section > div.text-content p,
+    body > main > section:nth-child(2) > section > div.text-content ul,
+    body > main > section:nth-child(2) > section > div.text-content li {
+        text-align: justify !important;
+        text-align-last: left !important;
+    }
+    #beyond-the-game > div > h3 {
+        color: #888 !important;
     }
 }
 
