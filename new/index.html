@@ -257,27 +257,39 @@
                 <p class="portraits-description">From senior portraits that celebrate your achievements to family sessions that freeze time and events that mark life's milestones, we document the moments that define who you are.</p>
                 <!-- Mobile Events Cards -->
                 <div class="mobile-events-cards">
-                    <div class="accordion-card" tabindex="0" data-href="/new/services/recitals.html" data-event="Recitals">
+                    <div class="accordion-card" tabindex="0" data-href="/new/services/events.html" data-event="Recitals">
                         <img src="/new/images/events/m-recitals.jpg" alt="Richmond dance recital photography - Professional performance coverage">
                     </div>
-                    <div class="accordion-card" tabindex="0" data-href="/new/services/performances.html" data-event="Performances">
+                    <div class="accordion-card" tabindex="0" data-href="/new/services/events.html" data-event="Performances">
                         <img src="/new/images/events/m-performances.jpg" alt="Richmond theater photography - School and community productions">
                     </div>
-                    <div class="accordion-card" tabindex="0" data-href="/new/services/event-coverage.html" data-event="Event Coverage">
+                    <div class="accordion-card" tabindex="0" data-href="/new/services/events.html" data-event="Event Coverage">
                         <img src="/new/images/events/m-event-coverage.jpg" alt="Richmond event photography - Corporate and community events">
+                    </div>
+                </div>
+                <!-- Mobile Portrait Cards -->
+                <div class="mobile-portraits-cards">
+                    <div class="accordion-card" tabindex="0" data-href="/new/services/portraits.html" data-portrait="Headshots">
+                        <img src="/new/images/portraits/m-headshots.jpg" alt="Professional headshot photography Richmond VA">
+                    </div>
+                    <div class="accordion-card" tabindex="0" data-href="/new/services/portraits.html" data-portrait="Senior Portraits">
+                        <img src="/new/images/portraits/m-senior.jpg" alt="Senior portrait photography Richmond VA">
+                    </div>
+                    <div class="accordion-card" tabindex="0" data-href="/new/services/portraits.html" data-portrait="Family Portraits">
+                        <img src="/new/images/portraits/m-family.jpg" alt="Family portrait photography Richmond VA">
                     </div>
                 </div>
                 <div class="services-grid">
                     <div class="events-section">
                         <h3>Event Photography Options</h3>
                         <div class="horizontal-accordion events-accordion">
-                            <div class="accordion-card" tabindex="0" data-href="/new/services/recitals.html" data-event="Recitals">
+                            <div class="accordion-card" tabindex="0" data-href="/new/services/events.html" data-event="Recitals">
                                 <img src="/new/images/events/recitals-color.jpg" alt="Richmond dance recital photography - Professional performance coverage">
                             </div>
-                            <div class="accordion-card" tabindex="0" data-href="/new/services/performances.html" data-event="Performances">
+                            <div class="accordion-card" tabindex="0" data-href="/new/services/events.html" data-event="Performances">
                                 <img src="/new/images/events/performances-color.jpg" alt="Richmond theater photography - School and community productions">
                             </div>
-                            <div class="accordion-card" tabindex="0" data-href="/new/services/event-coverage.html" data-event="Event Coverage">
+                            <div class="accordion-card" tabindex="0" data-href="/new/services/events.html" data-event="Event Coverage">
                                 <img src="/new/images/events/event-coverage-color.jpg" alt="Richmond event photography - Corporate and community events">
                             </div>
                         </div>
@@ -291,7 +303,7 @@
                             <div class="accordion-card" tabindex="0" data-href="/new/services/portraits.html" data-portrait="Senior Portraits">
                                 <img src="/new/images/portraits/senior-color.jpg" alt="Senior portrait photography Richmond VA">
                             </div>
-                            <div class="accordion-card" tabindex="0" data-href="/new/services/portraits.html" data-portrait="Family">
+                            <div class="accordion-card" tabindex="0" data-href="/new/services/portraits.html" data-portrait="Family Portraits">
                                 <img src="/new/images/portraits/family-color.jpg" alt="Family portrait photography Richmond VA">
                             </div>
                         </div>
@@ -392,23 +404,23 @@
         });
 
         // Events accordion
-        document.querySelectorAll('.events-accordion .accordion-card').forEach(card => {
+        document.querySelectorAll('.events-accordion .accordion-card, .mobile-events-cards .accordion-card').forEach(card => {
           card.addEventListener('mouseenter', () => {
-            document.querySelectorAll('.events-accordion .accordion-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.events-accordion .accordion-card, .mobile-events-cards .accordion-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
           });
           card.addEventListener('mouseleave', () => {
             card.classList.remove('active');
           });
           card.addEventListener('focus', () => {
-            document.querySelectorAll('.events-accordion .accordion-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.events-accordion .accordion-card, .mobile-events-cards .accordion-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
           });
           card.addEventListener('blur', () => {
             card.classList.remove('active');
           });
           card.addEventListener('click', () => {
-            document.querySelectorAll('.events-accordion .accordion-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.events-accordion .accordion-card, .mobile-events-cards .accordion-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             const href = card.getAttribute('data-href');
             if (href) {
@@ -418,23 +430,23 @@
         });
 
         // Portraits accordion
-        document.querySelectorAll('.portraits-accordion .accordion-card').forEach(card => {
+        document.querySelectorAll('.portraits-accordion .accordion-card, .mobile-portraits-cards .accordion-card').forEach(card => {
           card.addEventListener('mouseenter', () => {
-            document.querySelectorAll('.portraits-accordion .accordion-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.portraits-accordion .accordion-card, .mobile-portraits-cards .accordion-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
           });
           card.addEventListener('mouseleave', () => {
             card.classList.remove('active');
           });
           card.addEventListener('focus', () => {
-            document.querySelectorAll('.portraits-accordion .accordion-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.portraits-accordion .accordion-card, .mobile-portraits-cards .accordion-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
           });
           card.addEventListener('blur', () => {
             card.classList.remove('active');
           });
           card.addEventListener('click', () => {
-            document.querySelectorAll('.portraits-accordion .accordion-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.portraits-accordion .accordion-card, .mobile-portraits-cards .accordion-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             const href = card.getAttribute('data-href');
             if (href) {
