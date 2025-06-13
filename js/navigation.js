@@ -16,7 +16,7 @@ function generateNavHTML() {
             <li data-page="about.html"><a href="/about.html">ABOUT</a></li>
             <li data-page="blog/index.html"><a href="/blog/index.html">BLOG</a></li>
             <li data-page="galleries"><a href="https://zollinhofer.com" target="_blank" rel="noopener noreferrer">GALLERIES</a></li>
-            <li data-page="contact.html"><a href="/contact.html">CONTACT</a></li>
+            <li data-page="contact.html"><a href="https://z-photography.com/contact.html">CONTACT</a></li>
         </ul>
         <div class="upcoming-shoot" id="upcomingShoot">
             <!-- Content will be loaded dynamically -->
